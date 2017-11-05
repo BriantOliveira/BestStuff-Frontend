@@ -30,32 +30,8 @@ class Home extends Component{
 
   render() {
     return (
-      <div className={styles.content}>
-          <form action="localhost:8000" method="POST">
-            <div className={"row"}>
-
-              <div className={"col-md-5 col-sm-5}">
-                <div>
-                  <h1 className="page-title">BestStuff</h1>
-                  {this.getAllContests()}
-                </div>
-              </div>
-
-              <div className={"col-md-7 col-sm-7"}>
-
-                <div className={"form-group"}>
-                  <h6> Name </h6>
-                  <input type="text" className={"form-control border-input"} placeholder="Enter the contest name" />
-                </div>
-
-                <div className={"form-group"}>
-                  <h6> Location </h6>
-                  <input type="text" className={"form-control border-input"} placeholder="Search for a restaurant" />
-                </div>
-
-              </div>
-
-          </form>
+      <div className={"container"} >
+        <div className={"row"}>
         </div>
       </div>
     );
