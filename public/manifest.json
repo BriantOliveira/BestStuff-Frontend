@@ -1,0 +1,15 @@
+{
+  "short_name": "Best Stuff",
+  "name": "Item review app for Make School's Web 3 - Advanced Web Patterns.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
