@@ -32,7 +32,9 @@ class Home extends Component{
 
   render() {
     return (
+      <div className={"main"}>
       <div className={"container"} >
+        <h1> Best Stuff </h1>
         <div className={"row"}>
           <div className={"col-md-5 col-sm-5"}>
             {this.getAllContests()}
@@ -40,14 +42,17 @@ class Home extends Component{
           <div className={"col-md-7 col-sm-7"}>
             <form>
               <div className={"form-group"}>
-                <input />
+                <h6> Name </h6>
+                <input className={"form-control border-input"} placeholder="Enter the item name"/>
               </div>
               <div className={"form-group"}>
-                <input />
+                <h6> Location </h6>
+                <input className={"form-control border-input"} placeholder="Search for a restaurant"/>
               </div>
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }
