@@ -34,6 +34,19 @@ class Home extends Component{
     return (
       <div className={"container"} >
         <div className={"row"}>
+          <div className={"col-md-5 col-sm-5"}>
+            {this.getAllContests()}
+          </div>
+          <div className={"col-md-7 col-sm-7"}>
+            <form>
+              <div className={"form-group"}>
+                <input />
+              </div>
+              <div className={"form-group"}>
+                <input />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
