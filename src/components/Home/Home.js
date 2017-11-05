@@ -11,19 +11,21 @@ class Home extends Component{
   }
 
   componentWillMount() {
-    console.log('Loading stuff at home page thing Tassos...');
-    fetch('/category').then((res)=>{
+{ /*
+    fetch('https://localhost:8000/contests').then((res)=>{
       return res.text();
     }).then((text)=>{
       console.log(text);
     }).catch((err)=>{
       console.log(err.message);
     })
+*/}
   }
 
   getAllContests() {
     // TODO: replace local test variable w/ fetch call to backend
     return testData.contests.map((contest, index) => {
+      console.log()
       return <ContestCard key={index} name={contest.name} id={contest.id}/>
     })
   }

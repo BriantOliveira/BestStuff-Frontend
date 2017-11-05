@@ -25,7 +25,7 @@ export default class Contest extends Component{
   }
 
   componentWillMount() {
-
+    console.log(this.props.params.contestId)
   }
 
   findContestById(contests, id) {
@@ -45,9 +45,9 @@ export default class Contest extends Component{
 
   render() {
     var contestId = this.props.params.id;
+    console.log(this.props.params.id)
     var contest = this.findContestById(testData.contests, contestId);
     return (
-
       <div className="features-3">
         <div className="row">
           <div className="col-md-6">
