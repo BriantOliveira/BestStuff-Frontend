@@ -21,45 +21,46 @@ export default class Contest extends Component{
 
   constructor(props) {
     super(props)
-    this.state = {}
-  }
-
-  componentWillMount() {
-    console.log(this.props.params.contestId)
-  }
-
-  findContestById(contests, id) {
-    for (let i = 0; i < contests.length; i++) {
-      console.log(contests[i]);
-      if (contests[i].id === id) {
-        return contests[i];
-      }
+    this.state = {
     }
   }
 
-  getItemsInContest(items) {
+  componentWillMount() {
+  }
+
+  findContestById(contests, id) {
+    const result = contests.filter(contest => {
+      return contest.id == id
+    })
+
+    // Should only return 1 result
+    return result[0]
+  }
+
+  drawContests(items) {
     return items.map((item, index) => {
       return <ItemCard key={index} loc={item.loc} name={item.name}/>
     })
   }
 
   render() {
-    var contestId = this.props.params.id;
-    console.log(this.props.params.id)
+    var contestId = this.props.match.params.id;
     var contest = this.findContestById(testData.contests, contestId);
+    console.log(contest)
     return (
       <div className="features-3">
         <div className="row">
           <div className="col-md-6">
             <div className="container">
               <h2 className="title">{contest.name}</h2>
-              {this.getItemsInContest(contest.items)}
-              <a href="/items/new" className="btn btn-primary btn-lg active" role="button"><i className="fa fa-heart"></i> Add New Item</a>
+              <a href="/items/new" className="btn btn-primary btn-lg active" role="button"><i className="nc-icon nc-simple-add"></i> Enroll/Add New Item to this Contest</a>
+
+              {this.drawContests(contest.items)}
 
             </div>
 
           </div>
-          <div className="col-md-5 ml-auto">
+          <div className="col-md-5">
 
             <MapContainer lng={contest.lng} lat={contest.lat}/>
           </div>

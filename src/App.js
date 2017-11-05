@@ -15,9 +15,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-
           <Route exact path="/" component={Home}/>
-          <Route path="/contests/:contestId" component={Contest}/>
+          <Route path="/contests/:id" component={Contest}/>
           <Route path="/items/new" component={ItemNew}/>
         </div>
       </Router>
