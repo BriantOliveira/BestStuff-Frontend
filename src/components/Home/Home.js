@@ -11,16 +11,16 @@ class Home extends Component{
   }
 
   componentWillMount() {
-{ /*
-    fetch('https://localhost:8000/contests').then((res)=>{
+    { /*
+      fetch('https://localhost:8000/contests').then((res)=>{
       return res.text();
-    }).then((text)=>{
+      }).then((text)=>{
       console.log(text);
-    }).catch((err)=>{
+      }).catch((err)=>{
       console.log(err.message);
-    })
-*/}
-  }
+      })
+      */}
+    }
 
   getAllContests() {
     // TODO: replace local test variable w/ fetch call to backend
@@ -69,4 +69,4 @@ class Home extends Component{
   }
 };
 
-export default Home
+  export default Home
