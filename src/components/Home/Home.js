@@ -37,19 +37,23 @@ class Home extends Component{
         <h1> Best Stuff </h1>
         <div className={"row"}>
           <div className={"col-md-5 col-sm-5"}>
-            {this.getAllContests()}
+            <div className={"container"}>
+              {this.getAllContests()}
+            </div>
           </div>
           <div className={"col-md-7 col-sm-7"}>
-            <form>
-              <div className={"form-group"}>
-                <h6> Name </h6>
-                <input className={"form-control border-input"} placeholder="Enter the item name"/>
-              </div>
-              <div className={"form-group"}>
-                <h6> Location </h6>
-                <input className={"form-control border-input"} placeholder="Search for a restaurant"/>
-              </div>
-            </form>
+            <div className={"container"}>
+              <form>
+                <div className={"form-group"}>
+                  <h6> Name </h6>
+                  <input className={"form-control border-input"} placeholder="Enter the item name"/>
+                </div>
+                <div className={"form-group"}>
+                  <h6> Location </h6>
+                  <input className={"form-control border-input"} placeholder="Search for a restaurant"/>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
