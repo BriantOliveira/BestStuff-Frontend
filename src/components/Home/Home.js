@@ -36,12 +36,12 @@ class Home extends Component{
       <div className={"container"} >
         <h1> Best Stuff </h1>
         <div className={"row"}>
-          <div className={"col-md-5 col-sm-5"}>
+          <div className={"col-md-7 col-sm-7"}>
             <div className={"container"}>
               {this.getAllContests()}
             </div>
           </div>
-          <div className={"col-md-7 col-sm-7"}>
+          <div className={"col-md-5 col-sm-5"}>
             <div className={"container"}>
               <form>
                 <div className={"form-group"}>
