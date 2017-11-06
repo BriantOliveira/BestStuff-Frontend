@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import MapContainer from '../Misc/MapContainer';
+import axios from 'axios'
 
 const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
 const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
@@ -22,11 +23,24 @@ export default class Contest extends Component{
   constructor(props) {
     super(props)
     this.state = {
+      contest: {
+        name: "",
+        id: this.props.match.params.id
+      }
     }
   }
 
   componentWillMount() {
-
+    const url = `http://localhost:8000/contests/${this.props.match.params.id}`
+    axios.get(url)
+    .then(response => {
+      if (response.status == 200) {
+        console.log(response)
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   findContestById(contests, id) {
@@ -46,7 +60,7 @@ export default class Contest extends Component{
 
   render() {
     var contestId = this.props.match.params.id;
-    var contest = this.findContestById(testData.contests, contestId);
+    var contest = this.state.contest
     console.log(contest)
     return (
       <div className="features-3">

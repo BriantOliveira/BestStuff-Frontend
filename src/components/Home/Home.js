@@ -1,74 +1,92 @@
 import React, { Component } from 'react'
-import styles from "./home.css";
 import { Link } from 'react-router';
 import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
+import axios from 'axios'
 
 class Home extends Component{
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      contests: [],
+      newContestName: ""
+    };
   }
 
   componentWillMount() {
-    { /*
-      fetch('https://localhost:8000/contests').then((res)=>{
-      return res.text();
-      }).then((text)=>{
-      console.log(text);
-      }).catch((err)=>{
-      console.log(err.message);
+    this.getAllContests()
+  }
+
+  getAllContests() {
+    axios.get('http://localhost:8000/contests')
+    .then(response => {
+      this.setState({contests: response.data})
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  drawContests() {
+    return this.state.contests.map((contest, index) => {
+      return <ContestCard key={index} name={contest.name} id={contest.id}/>
+    })
+  }
+
+  updateContestName(e) {
+    const text = e.target.value
+    this.setState({ newContestName: text })
+  }
+
+  submitContest() {
+    const newName = this.state.newContestName
+    console.log(newName)
+    const data = { name: newName }
+    if (newName) {
+      axios.post('http://localhost:8000/contests/create', data)
+      .then(response => {
+        console.log(response)
+        if (response.status == 200) {
+          this.setState({
+            contests: [...this.state.contests, response.data.contest],
+            newContestName: ""
+          })
+        }
       })
-      */}
+      .catch(err => {
+        console.log(err)
+      })
     }
 
-    getAllContests() {
-      // TODO: replace local test variable w/ fetch call to backend
 
-      fetch('https://localhost:8000/contests').then((res) => {
-        console.log(res);
-        return res.json();
-      }).then((text) => {
-        console.log(text);
-        return testData.contests.map((contest, index) => {
-          return <ContestCard key={index} name={contest.name} id={contest.id}/>
-        }).catch((err) => {
-          console.error(err);
-        })
-      });
-    }
+  }
 
-    render() {
-      return (
-        <div className={"main"}>
-          <div className={"container"} >
-            <h1 style={{padding:20}}> Best Stuff </h1>
-            <div className={"row"}>
-              <div className={"col-md-7 col-sm-7"}>
-                <div className={"container"}>
-                  {this.getAllContests()}
-                </div>
+  render() {
+    return (
+      <div className={"main"}>
+        <div className={"container"} >
+          <h1 style={{padding:20}}> Best Stuff </h1>
+          <div className={"row"}>
+            <div className={"col-lg-7"}>
+              <div className={"container"}>
+                {this.drawContests()}
               </div>
-              <div className="col-md-5 col-sm-5">
-                <div className="container">
-                  <div className="card card-plain">
-                    <h3>Add a new contest...</h3>
-                    <form role="form" action="http://localhost:8000/contests/create" method="post">
-                      <div className="form-group">
-                        <h6> Name </h6>
-                        <input name="name" className="form-control border-input" placeholder="Enter the item name"/>
-                      </div>
-                      <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
-
+            </div>
+            <div className="col-lg-5">
+              <div className="container">
+                <h3>Add a new contest...</h3>
+                  <div className="form-group">
+                    <h6> Name </h6>
+                    <input name="name" onChange={this.updateContestName.bind(this)} className="form-control border-input" value={this.state.newContestName} placeholder="Enter the contest name"/>
                   </div>
-                </div>
+                  <button onClick={this.submitContest.bind(this)} className="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
         </div>
-      );
-    }
-  };
+      </div>
+    );
+  }
+};
 
-  export default Home
+export default Home
