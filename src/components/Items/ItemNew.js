@@ -14,7 +14,6 @@ export default class ItemNew extends Component{
         <div className="container">
           <div className="row">
             <div className="col-md-10 ml-auto mr-auto">
-              <div className="card card-plain card-contact no-transition">
                 <h3 className="card-title">Add New Item!</h3>
                 <div className="row">
 
@@ -30,18 +29,18 @@ export default class ItemNew extends Component{
                       </div>
                       <div className="form-group">
                         <label className="control-label">Latitude</label>
-                        <input name="lat" type="number" className="form-control" placeholder="Latitude"/>
+                        <input name="lat" type="text" className="form-control" placeholder="Latitude"/>
                       </div>
                       <div className="form-group label-floating">
                         <label className="control-label">Longitude</label>
-                        <input name="long" type="number" className="form-control" placeholder="Longitude"/>
+                        <input name="long" type="text" className="form-control" placeholder="Longitude"/>
                       </div>
 
                       <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                   </div>
                 </div>
-              </div>
+
             </div>
           </div>
         </div>
