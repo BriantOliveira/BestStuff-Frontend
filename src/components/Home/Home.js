@@ -26,15 +26,16 @@ class Home extends Component{
     // TODO: replace local test variable w/ fetch call to backend
 
     fetch('https://localhost:8000/contests').then((res) => {
-      return res.text();
+      console.log(res);
+      return res.json();
     }).then((text) => {
       console.log(text);
       return testData.contests.map((contest, index) => {
         return <ContestCard key={index} name={contest.name} id={contest.id}/>
+      }).catch((err) => {
+        console.error(err);
       })
     });
-
-
   }
 
   render() {
@@ -56,8 +57,16 @@ class Home extends Component{
                   <input className={"form-control border-input"} placeholder="Enter the item name"/>
                 </div>
                 <div className={"form-group"}>
-                  <h6> Location </h6>
+                  <h6> Location Name </h6>
                   <input className={"form-control border-input"} placeholder="Search for a restaurant"/>
+                </div>
+                <div className={"form-group"}>
+                  <h6> Latitude </h6>
+                  <input className={"form-control border-input"} placeholder="Enter Longitude (temporary)"/>
+                </div>
+                <div className={"form-group"}>
+                  <h6> Longitude </h6>
+                  <input className={"form-control border-input"} placeholder="Enter Longitude (temporary)"/>
                 </div>
               </form>
             </div>
