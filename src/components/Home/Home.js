@@ -30,20 +30,36 @@ class Home extends Component{
       })
     }
 
-    render() {
-      return (
-        <div className={styles.content}>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 offset-md-3">
-                <h1 className="page-title">BestStuff</h1>
-                {this.getAllContests()}
-              </div>
+  render() {
+    return (
+      <div className={"main"}>
+      <div className={"container"} >
+        <h1> Best Stuff </h1>
+        <div className={"row"}>
+          <div className={"col-md-7 col-sm-7"}>
+            <div className={"container"}>
+              {this.getAllContests()}
+            </div>
+          </div>
+          <div className={"col-md-5 col-sm-5"}>
+            <div className={"container"}>
+              <form>
+                <div className={"form-group"}>
+                  <h6> Name </h6>
+                  <input className={"form-control border-input"} placeholder="Enter the item name"/>
+                </div>
+                <div className={"form-group"}>
+                  <h6> Location </h6>
+                  <input className={"form-control border-input"} placeholder="Search for a restaurant"/>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      );
-    }
-  };
+      </div>
+      </div>
+    );
+  }
+};
 
   export default Home
