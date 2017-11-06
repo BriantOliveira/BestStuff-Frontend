@@ -24,17 +24,24 @@ class Home extends Component{
 
   getAllContests() {
     // TODO: replace local test variable w/ fetch call to backend
-    return testData.contests.map((contest, index) => {
-      console.log()
-      return <ContestCard key={index} name={contest.name} id={contest.id}/>
-    })
+
+    fetch('https://localhost:8000/contests').then((res) => {
+      return res.text();
+    }).then((text) => {
+      console.log(text);
+      return testData.contests.map((contest, index) => {
+        return <ContestCard key={index} name={contest.name} id={contest.id}/>
+      })
+    });
+
+
   }
 
   render() {
     return (
       <div className={"main"}>
       <div className={"container"} >
-        <h1> Best Stuff </h1>
+        <h1 style={{padding:20}}> Best Stuff </h1>
         <div className={"row"}>
           <div className={"col-md-7 col-sm-7"}>
             <div className={"container"}>
