@@ -73,7 +73,7 @@ class Home extends Component{
       signUp = <Link to="#"> Sign Up </Link>
     }
 
-    console.log(this.state.loggedIn)
+    console.log(this.props.loggedIn)
 
     return (
       <div className={"main"}>

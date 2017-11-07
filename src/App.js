@@ -18,23 +18,44 @@ class App extends Component {
     this.state = {
       loggedIn: false
     }
+    this.setLoggedIn = this.setLoggedIn.bind(this)
   }
 
   setLoggedIn(isLoggedIn) {
+    console.log("set logged in running")
     this.setState({
       loggedIn: isLoggedIn
     })
   }
 
   render() {
+
+    const RenderHome = (props) => {
+      return(
+        <Home loggedIn = {this.state.loggedIn} {...props} />
+      )
+    }
+
+    const RenderLogIn = (props) => {
+      return(
+        <LogIn setLoggedIn = {this.setLoggedIn} {...props} />
+      )
+    }
+
+    const RenderSignUp = (props) => {
+      return(
+        <SignUp setLoggedIn = {this.setLoggedIn} {...props} />
+      )
+    }
+
     return (
       <Router>
         <div>
-          <Route exact path="/" isLoggedIn = {this.state.loggedIn} component={Home}/>
+          <Route exact path="/" render={RenderHome}/>
           <Route path="/contests/:id" component={Contest}/>
           <Route path="/items/new" component={ItemNew}/>
-          <Route path="/signup" setLoggedIn = {this.setLoggedIn.bind(this)} component={SignUp} />
-          <Route path="/login" setLoggedIn = {this.setLoggedIn.bind(this)} component={LogIn} />
+          <Route path="/signup"  render={RenderSignUp} />
+          <Route path="/login" render={RenderLogIn} />
         </div>
       </Router>
     )
