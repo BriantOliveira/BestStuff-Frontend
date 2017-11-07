@@ -63,10 +63,7 @@ class Home extends Component{
 
     let loginLogout = null;
     let signUp = null;
-    if (this.props.isLoggedIn) {
-      this.setState({
-        loggedIn: true
-      })
+    if (this.props.loggedIn) {
       loginLogout = <Link to="#"> Logout </Link>
     } else {
       loginLogout = <Link to="/login"> Login </Link>
