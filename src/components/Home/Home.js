@@ -58,16 +58,21 @@ class Home extends Component{
     }
   }
 
+  logout() {
+    axios.get('http://localhost:8000/logout');
+    this.props.history.push('/');
+  }
+
 
   render() {
 
     let loginLogout = null;
     let signUp = null;
     if (this.props.loggedIn) {
-      loginLogout = <Link to="#"> Logout </Link>
+      loginLogout = <button className={"btn btn-primary"} onClick={this.logout.bind(this)}> Logout </button>
     } else {
-      loginLogout = <Link to="/login"> Login </Link>
-      signUp = <Link to="#"> Sign Up </Link>
+      loginLogout = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/login')}}> Login </button>
+      signUp = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
     }
 
     console.log(this.props.loggedIn)
