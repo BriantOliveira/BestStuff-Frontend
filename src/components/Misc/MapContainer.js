@@ -14,6 +14,9 @@ export class MapContainer extends Component {
         zoom={15}
         >
         <InfoWindow onClose={this.onInfoWindowClose}>
+          <div>
+            <h1>Map</h1>
+          </div>
         </InfoWindow>
       </Map>
     );

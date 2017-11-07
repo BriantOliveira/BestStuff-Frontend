@@ -14,13 +14,12 @@ class Home extends Component{
   }
 
   componentWillMount() {
-    this.getAllContests()
-  }
-
-  getAllContests() {
     axios.get('http://localhost:8000/contests')
     .then(response => {
-      this.setState({contests: response.data})
+      if (response.status === 200) {
+        console.log(response)
+        this.setState({contests: response.data})
+      }
     })
     .catch(error => {
       console.log(error);
@@ -75,11 +74,11 @@ class Home extends Component{
             <div className="col-lg-5">
               <div className="container">
                 <h3>Add a new contest...</h3>
-                  <div className="form-group">
-                    <h6> Name </h6>
-                    <input name="name" onChange={this.updateContestName.bind(this)} className="form-control border-input" value={this.state.newContestName} placeholder="Enter the contest name"/>
-                  </div>
-                  <button onClick={this.submitContest.bind(this)} className="btn btn-primary">Submit</button>
+                <div className="form-group">
+                  <h6> Name </h6>
+                  <input name="name" onChange={this.updateContestName.bind(this)} className="form-control border-input" value={this.state.newContestName} placeholder="Enter the contest name"/>
+                </div>
+                <button onClick={this.submitContest.bind(this)} className="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>

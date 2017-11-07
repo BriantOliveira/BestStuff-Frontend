@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import MapContainer from '../Misc/MapContainer';
+import ItemNew from '../Items/ItemNew'
 import axios from 'axios'
 
 const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
@@ -12,7 +13,7 @@ class ItemCard extends Component {
     return(
       <div className="card-plain" style={{paddingLeft:40, paddingBottom:20}}>
         <h2 className="card-title"> {this.props.name} </h2>
-        <p> {this.props.loc} </p>
+        <p className="card-body"> {this.props.loc} </p>
       </div>
     );
   }
@@ -26,7 +27,8 @@ export default class Contest extends Component{
       contest: {
         name: "",
         id: this.props.match.params.id
-      }
+      },
+      items: []
     }
   }
 
@@ -36,6 +38,7 @@ export default class Contest extends Component{
     .then(response => {
       if (response.status == 200) {
         console.log(response)
+        this.setState({contest: response.data})
       }
     })
     .catch(error => {
@@ -58,6 +61,14 @@ export default class Contest extends Component{
     })
   }
 
+
+  displayModal() {
+      return (
+        <ItemNew contestId={this.props.match.params.id}/>
+      )
+
+  }
+
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
@@ -65,18 +76,17 @@ export default class Contest extends Component{
     return (
       <div className="features-3">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <div className="container">
               <h1 className="title">{contest.name}</h1>
-              <a href="/items/new" className="btn btn-primary btn-lg active" role="button"><i className="nc-icon nc-simple-add"></i> Enroll/Add New Item to this Contest</a>
-
-              {this.drawContests(contest.items)}
+              <button className="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
+              {this.displayModal()}
+              {this.drawContests(this.state.items)}
 
             </div>
 
           </div>
-          <div className="col-md-5">
-
+          <div className="col-lg-5 mr-auto">
             <MapContainer lng={contest.lng} lat={contest.lat}/>
           </div>
         </div>
