@@ -9,7 +9,6 @@ export default class SignUp extends Component {
     this.state = {
       username: "",
       password: "",
-      loggedIn: false
     }
   }
 
@@ -40,9 +39,10 @@ export default class SignUp extends Component {
       })
       .catch(err => {
         console.log(err)
+      }).then(() => {
+        this.props.history.push('/')
       })
     }
-    this.props.history.push('/')
   }
 
   render() {

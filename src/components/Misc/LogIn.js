@@ -8,8 +8,7 @@ export default class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
-      loggedIn: false
+      password: ""
     }
   }
 
@@ -40,9 +39,10 @@ export default class LogIn extends Component {
       })
       .catch(err => {
         console.log(err)
+      }).then(() => {
+        this.props.history.push('/')
       })
     }
-    this.props.history.push('/')
   }
 
   render() {

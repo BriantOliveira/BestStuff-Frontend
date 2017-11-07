@@ -10,7 +10,6 @@ class Home extends Component{
     this.state = {
       contests: [],
       newContestName: "",
-      loggedIn: false
     };
   }
 
@@ -73,6 +72,8 @@ class Home extends Component{
       loginLogout = <Link to="/login"> Login </Link>
       signUp = <Link to="#"> Sign Up </Link>
     }
+
+    console.log(this.state.loggedIn)
 
     return (
       <div className={"main"}>
