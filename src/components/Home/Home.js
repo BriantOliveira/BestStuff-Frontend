@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
-import axios from 'axios'
+import axios from 'axios';
 
 class Home extends Component{
   constructor(props) {
@@ -57,17 +57,29 @@ class Home extends Component{
         console.log(err)
       })
     }
-
-
   }
 
+
   render() {
+
+    let loginLogout = null;
+    let signUp = null;
+    if (this.props.isLoggedIn) {
+      this.setState({
+        loggedIn: true
+      })
+      loginLogout = <Link to="#"> Logout </Link>
+    } else {
+      loginLogout = <Link to="/login"> Login </Link>
+      signUp = <Link to="#"> Sign Up </Link>
+    }
+
     return (
       <div className={"main"}>
         <div className={"navbar"}>
           <div className={"container"}>
-            <Link to="/login"> Login </Link>
-            <Link to="/signup"> Sign Up </Link>
+            {loginLogout}
+            {signUp}
           </div>
         </div>
         <div className={"container"} >

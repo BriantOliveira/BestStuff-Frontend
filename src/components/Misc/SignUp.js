@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 
 export default class SignUp extends Component {
@@ -35,6 +35,7 @@ export default class SignUp extends Component {
           this.setState({
             loggedIn: true
           })
+          this.props.setLoggedIn(true)
         }
       })
       .catch(err => {
