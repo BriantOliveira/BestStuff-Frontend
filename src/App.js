@@ -32,7 +32,7 @@ class App extends Component {
 
     const RenderHome = (props) => {
       return(
-        <Home loggedIn = {this.state.loggedIn} {...props} />
+        <Home loggedIn = {this.state.loggedIn} setLoggedIn = {this.setLoggedIn} {...props} />
       )
     }
 

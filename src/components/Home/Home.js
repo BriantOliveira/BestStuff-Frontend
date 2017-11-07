@@ -61,6 +61,7 @@ class Home extends Component{
   logout() {
     axios.get('http://localhost:8000/logout');
     this.props.history.push('/');
+    this.props.setLoggedIn(false)
   }
 
 
