@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+
 export default class SignUp extends Component {
 
   constructor(props) {
@@ -40,6 +41,7 @@ export default class SignUp extends Component {
         console.log(err)
       })
     }
+    this.props.history.push('/')
   }
 
   render() {

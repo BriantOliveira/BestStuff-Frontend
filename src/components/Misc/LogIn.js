@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-export default class SignUp extends Component {
+
+export default class LogIn extends Component {
 
   constructor(props) {
     super(props);
@@ -40,12 +41,13 @@ export default class SignUp extends Component {
         console.log(err)
       })
     }
+    this.props.history.push('/')
   }
 
   render() {
     return (
       <div className="container">
-        <h3>Sign Up</h3>
+        <h3>Log In</h3>
         <div className="form-group">
           <h6> Name </h6>
           <input name="name" onChange={this.updateUsername.bind(this)} className="form-control border-input" value={this.state.username} placeholder="Username"/>
