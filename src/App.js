@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import Home from './components/Home/Home'
 import Contest from './components/Contests/Contest'

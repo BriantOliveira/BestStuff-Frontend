@@ -45,7 +45,7 @@ class Home extends Component{
       axios.post('http://localhost:8000/contests/create', data)
       .then(response => {
         console.log(response)
-        if (response.status == 200) {
+        if (response.status === 200) {
           this.setState({
             contests: [...this.state.contests, response.data.contest],
             newContestName: ""

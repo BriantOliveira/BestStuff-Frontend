@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import MapContainer from '../Misc/MapContainer';
 import ItemNew from '../Items/ItemNew'
@@ -36,7 +35,7 @@ export default class Contest extends Component{
     const url = `http://localhost:8000/contests/${this.props.match.params.id}`
     axios.get(url)
     .then(response => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         console.log(response)
         this.setState({contest: response.data})
       }
@@ -48,7 +47,7 @@ export default class Contest extends Component{
 
   findContestById(contests, id) {
     const result = contests.filter(contest => {
-      return contest.id == id
+      return contest.id === id
     })
 
     // Should only return 1 result

@@ -22,7 +22,7 @@ export default class ItemNew extends Component{
     axios.post("http://localhost:8000/items/create", data)
     .then(response => {
       console.log(response)
-      if (response.status == 200) {
+      if (response.status === 200) {
 
         e.target = { dataDismiss: `model` }
       }
