@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
 import axios from 'axios'
@@ -9,7 +9,8 @@ class Home extends Component{
     super(props);
     this.state = {
       contests: [],
-      newContestName: ""
+      newContestName: "",
+      loggedIn: false
     };
   }
 
@@ -63,6 +64,12 @@ class Home extends Component{
   render() {
     return (
       <div className={"main"}>
+        <div className={"navbar"}>
+          <div className={"container"}>
+            <Link to="/login"> Login </Link>
+            <Link to="/signup"> Sign Up </Link>
+          </div>
+        </div>
         <div className={"container"} >
           <h1 style={{padding:20}}> Best Stuff </h1>
           <div className={"row"}>
