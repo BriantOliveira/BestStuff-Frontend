@@ -48,11 +48,17 @@ class App extends Component {
       )
     }
 
+    const RenderContest = (props) => {
+      return(
+        <Contest loggedIn = {this.state.loggedIn} {...props} />
+      )
+    }
+
     return (
       <Router>
         <div>
           <Route exact path="/" render={RenderHome}/>
-          <Route path="/contests/:id" component={Contest}/>
+          <Route path="/contests/:id" render={RenderContest}/>
           <Route path="/items/new" component={ItemNew}/>
           <Route path="/signup"  render={RenderSignUp} />
           <Route path="/login" render={RenderLogIn} />

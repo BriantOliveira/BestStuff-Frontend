@@ -3,10 +3,20 @@ import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 const MAPS = "AIzaSyAD0CS7T_DtdpNuqcin9DtX79brSndlI6U";
 
 export class MapContainer extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  displayMarkers() {
+    console.log("received locations:");
+    console.log(this.props.locations);
+  }
+
   render() {
     if (!this.props.loaded) {
       return <div> Loading... </div>
     }
+    this.displayMarkers()
     return (
       <Map
         google={this.props.google}
