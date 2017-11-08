@@ -50,7 +50,7 @@ class App extends Component {
 
     const RenderContest = (props) => {
       return(
-        <Contest loggedIn = {this.state.loggedIn} {...props} />
+        <Contest setLoggedIn = {this.setLoggedIn} loggedIn = {this.state.loggedIn} {...props} />
       )
     }
 
