@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
+import LoginBar from '../Misc/LoginBar'
 import axios from 'axios';
 
 class Home extends Component{
@@ -66,23 +67,10 @@ class Home extends Component{
 
   render() {
 
-    let loginLogout = null;
-    let signUp = null;
-    if (this.props.loggedIn) {
-      loginLogout = <button className={"btn btn-primary"} onClick={this.logout.bind(this)}> Logout </button>
-    } else {
-      loginLogout = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/login')}}> Login </button>
-      signUp = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
-    }
-
     return (
+      <div>
+      <LoginBar loggedIn={this.props.loggedIn}/>
       <div className={"main"}>
-        <div className={"navbar"}>
-          <div className={"container"}>
-            {loginLogout}
-            {signUp}
-          </div>
-        </div>
         <div className={"container"} >
           <h1 style={{padding:20}}> Best Stuff </h1>
           <div className={"row"}>
@@ -103,6 +91,7 @@ class Home extends Component{
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
