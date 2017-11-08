@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class LoginBar extends Component {
   constructor(props) {
@@ -28,7 +29,9 @@ export default class LoginBar extends Component {
       <div className={"navbar"} style={{marginBottom:20, paddingBottom:20}}>
         <div className={"container"}>
           <div style={{display:'flex', justifyContent:'space-between'}}>
+            <Link to="/" >
             <h1> Best Stuff </h1>
+            </Link>
             <div style={{display:'flex', justifyContent:'center'}}>
               {loginLogout}
               {signUp}
