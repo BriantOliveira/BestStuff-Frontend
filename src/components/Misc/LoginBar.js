@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class LoginBar extends Component {
   constructor(props) {
     super(props);
+  }
+
+  logout() {
+    axios.get('http://localhost:8000/logout');
+    this.props.history.push('/');
+    this.props.setLoggedIn(false)
   }
 
 

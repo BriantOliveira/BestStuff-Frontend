@@ -62,12 +62,21 @@ export default class Contest extends Component{
     )
   }
 
+  getLocations() {
+    var locations = [];
+    var items = this.state.contest.items;
+    for (let i = 0; i < items.length; i++) {
+      locations.append([items[i].lat, items[i].long]);
+    }
+    return locations;
+  }
+
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
     return (
       <div>
-        <LoginBar loggedIn={this.props.loggedIn} />
+        <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
         <div className="container">
           {this.displayModal()}
           <h1 className="title">{contest.name}</h1>
@@ -80,7 +89,7 @@ export default class Contest extends Component{
 
             </div>
             <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-              <MapContainer lng={contest.lng} lat={contest.lat}/>
+              <MapContainer lng={contest.lng} lat={contest.lat} locations={this.getLocations.bind(this)}/>
             </div>
           </div>
         </div>

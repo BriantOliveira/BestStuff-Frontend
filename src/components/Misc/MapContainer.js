@@ -4,10 +4,20 @@ const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
 const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
 
 export class MapContainer extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  displayMarkers() {
+    console.log("received locations:");
+    console.log(this.props.locations);
+  }
+
   render() {
     if (!this.props.loaded) {
       return <div> Loading... </div>
     }
+    this.displayMarkers()
     return (
       <Map
         google={this.props.google}

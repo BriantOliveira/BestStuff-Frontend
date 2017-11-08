@@ -58,18 +58,12 @@ class Home extends Component{
     }
   }
 
-  logout() {
-    axios.get('http://localhost:8000/logout');
-    this.props.history.push('/');
-    this.props.setLoggedIn(false)
-  }
-
 
   render() {
 
     return (
       <div>
-      <LoginBar loggedIn={this.props.loggedIn}/>
+      <LoginBar loggedIn={this.props.loggedIn} {...this.props}/>
       <div className={"main"}>
         <div className={"container"} >
           <h1 style={{padding:20}}> Best Stuff </h1>
