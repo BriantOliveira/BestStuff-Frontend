@@ -62,15 +62,6 @@ export default class Contest extends Component{
     )
   }
 
-  getLocations() {
-    var locations = [];
-    var items = this.state.contest.items;
-    for (let i = 0; i < items.length; i++) {
-      locations.push([items[i].lat, items[i].long]);
-    } // use map instead
-    return locations;
-  }
-
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
@@ -89,7 +80,7 @@ export default class Contest extends Component{
 
             </div>
             <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-              <MapContainer lng={contest.lng} lat={contest.lat} locations={this.getLocations.bind(this)}/>
+              <MapContainer lng={contest.lng} lat={contest.lat} items={this.state.contest.items}/>
             </div>
           </div>
         </div>
