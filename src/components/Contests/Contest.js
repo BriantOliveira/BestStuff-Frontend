@@ -1,22 +1,13 @@
 import React, { Component } from 'react'
 import testData from '../../testData.js';
 import MapContainer from '../Misc/MapContainer';
+import ItemCard from '../Items/ItemCard';
 import ItemNew from '../Items/ItemNew';
 import axios from 'axios';
 
 const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
 const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
 
-class ItemCard extends Component {
-  render() {
-    return(
-      <div className="card-plain" style={{paddingLeft:40, paddingBottom:20}}>
-        <h2 className="card-title"> {this.props.name} </h2>
-        <p className="card-body"> {this.props.loc} </p>
-      </div>
-    );
-  }
-}
 
 export default class Contest extends Component{
 
@@ -65,27 +56,27 @@ export default class Contest extends Component{
 
 
   displayModal() {
-      return (
-        <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
-      )
+    return (
+      <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
+    )
   }
 
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
     return (
-      <div className="features-3">
-        <div className="row" style={{height:'600px'}}>
-          <div className="col-lg-6">
-            <div className="container">
-              <h1 className="title">{contest.name}</h1>
-              <button className="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
-              {this.displayModal()}
-              {this.drawContests(this.state.contest.items)}
-            </div>
+      <div className="container">
+        {this.displayModal()}
+        <h1 className="title">{contest.name}</h1>
+        <div className="row" >
+          <div className="col-lg-7">
+
+            <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
+            <br />
+            {this.drawContests(this.state.contest.items)}
 
           </div>
-          <div className="col-lg-6" >
+          <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
             <MapContainer lng={contest.lng} lat={contest.lat}/>
           </div>
         </div>
