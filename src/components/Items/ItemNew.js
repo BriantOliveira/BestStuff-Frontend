@@ -14,16 +14,16 @@ export default class ItemNew extends Component{
 
   sendData(e) {
     const data = {
-      name: this.state.itemName,
-      place_name: this.state.placeName,
-      ContestId: this.props.contestId
+        name: this.state.itemName,
+        place_name: this.state.placeName,
+        contest: { id:this.props.contestId }
     }
 
-    axios.post("http://localhost:8000/items/create", data)
+    const url = `http://localhost:8000/contests/${this.props.contestId}/update`
+    axios.put(url, data)
     .then(response => {
       console.log(response)
       if (response.status === 200) {
-
         e.target = { dataDismiss: `model` }
       }
     })

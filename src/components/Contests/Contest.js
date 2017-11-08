@@ -36,7 +36,6 @@ export default class Contest extends Component{
     axios.get(url)
     .then(response => {
       if (response.status === 200) {
-        console.log(response)
         this.setState({contest: response.data})
       }
     })
