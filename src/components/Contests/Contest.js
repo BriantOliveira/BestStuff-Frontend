@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import testData from '../../testData.js';
 import MapContainer from '../Misc/MapContainer';
-import ItemNew from '../Items/ItemNew'
-import axios from 'axios'
+import ItemNew from '../Items/ItemNew';
+import axios from 'axios';
 
 const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
 const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
@@ -64,7 +64,6 @@ export default class Contest extends Component{
       return (
         <ItemNew contestId={this.props.match.params.id}/>
       )
-
   }
 
   render() {
@@ -80,11 +79,10 @@ export default class Contest extends Component{
               <button className="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
               {this.displayModal()}
               {this.drawContests(this.state.items)}
-
             </div>
 
           </div>
-          <div className="col-lg-5 mr-auto">
+          <div className="col-lg-6">
             <MapContainer lng={contest.lng} lat={contest.lat}/>
           </div>
         </div>

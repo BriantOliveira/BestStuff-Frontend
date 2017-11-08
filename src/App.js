@@ -12,15 +12,50 @@ import SignUp from './components/Misc/SignUp'
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      loggedIn: false
+    }
+    this.setLoggedIn = this.setLoggedIn.bind(this)
+  }
+
+  setLoggedIn(isLoggedIn) {
+    console.log("set logged in running")
+    this.setState({
+      loggedIn: isLoggedIn
+    })
+  }
+
   render() {
+
+    const RenderHome = (props) => {
+      return(
+        <Home loggedIn = {this.state.loggedIn} setLoggedIn = {this.setLoggedIn} {...props} />
+      )
+    }
+
+    const RenderLogIn = (props) => {
+      return(
+        <LogIn setLoggedIn = {this.setLoggedIn} {...props} />
+      )
+    }
+
+    const RenderSignUp = (props) => {
+      return(
+        <SignUp setLoggedIn = {this.setLoggedIn} {...props} />
+      )
+    }
+
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" render={RenderHome}/>
           <Route path="/contests/:id" component={Contest}/>
           <Route path="/items/new" component={ItemNew}/>
-          <Route path="/signup" component={SignUp} />
-          <Route path="/login" component={LogIn} />
+          <Route path="/signup"  render={RenderSignUp} />
+          <Route path="/login" render={RenderLogIn} />
         </div>
       </Router>
     )

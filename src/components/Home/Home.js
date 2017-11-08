@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
-import axios from 'axios'
+import axios from 'axios';
 
 class Home extends Component{
   constructor(props) {
@@ -10,7 +10,6 @@ class Home extends Component{
     this.state = {
       contests: [],
       newContestName: "",
-      loggedIn: false
     };
   }
 
@@ -57,17 +56,34 @@ class Home extends Component{
         console.log(err)
       })
     }
-
-
   }
 
+  logout() {
+    axios.get('http://localhost:8000/logout');
+    this.props.history.push('/');
+    this.props.setLoggedIn(false)
+  }
+
+
   render() {
+
+    let loginLogout = null;
+    let signUp = null;
+    if (this.props.loggedIn) {
+      loginLogout = <button className={"btn btn-primary"} onClick={this.logout.bind(this)}> Logout </button>
+    } else {
+      loginLogout = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/login')}}> Login </button>
+      signUp = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
+    }
+
+    console.log(this.props.loggedIn)
+
     return (
       <div className={"main"}>
         <div className={"navbar"}>
           <div className={"container"}>
-            <Link to="/login"> Login </Link>
-            <Link to="/signup"> Sign Up </Link>
+            {loginLogout}
+            {signUp}
           </div>
         </div>
         <div className={"container"} >

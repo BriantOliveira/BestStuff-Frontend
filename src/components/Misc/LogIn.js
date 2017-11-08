@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 
 export default class LogIn extends Component {
@@ -8,8 +8,7 @@ export default class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
-      loggedIn: false
+      password: ""
     }
   }
 
@@ -35,13 +34,15 @@ export default class LogIn extends Component {
           this.setState({
             loggedIn: true
           })
+          this.props.setLoggedIn(true)
         }
       })
       .catch(err => {
         console.log(err)
+      }).then(() => {
+        this.props.history.push('/')
       })
     }
-    this.props.history.push('/')
   }
 
   render() {

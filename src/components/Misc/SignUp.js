@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 
 export default class SignUp extends Component {
@@ -9,7 +9,6 @@ export default class SignUp extends Component {
     this.state = {
       username: "",
       password: "",
-      loggedIn: false
     }
   }
 
@@ -35,13 +34,15 @@ export default class SignUp extends Component {
           this.setState({
             loggedIn: true
           })
+          this.props.setLoggedIn(true)
         }
       })
       .catch(err => {
         console.log(err)
+      }).then(() => {
+        this.props.history.push('/')
       })
     }
-    this.props.history.push('/')
   }
 
   render() {

@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
+import Geosuggest from 'react-geosuggest'
+import styles from './geosuggest.css'
 
 export default class ItemNew extends Component{
 
@@ -66,7 +68,8 @@ export default class ItemNew extends Component{
                 </div>
                 <div className="form-group">
                   <label className="control-label">Place Name</label>
-                  <input name="place_name" onChange={this.changePlace.bind(this)} type="text" value={this.state.placeName} className="form-control" placeholder="Place Name"/>
+                  <Geosuggest onKeyPress={this.changePlace.bind(this)} value={this.state.placeName}  />
+                  {/*name="place_name"  type="text"  placeholder="Place Name" */}
                 </div>
 
 
