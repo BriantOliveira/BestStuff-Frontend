@@ -29,7 +29,7 @@ export default class LoginBar extends Component {
         <div className={"container"}>
           <div style={{display:'flex', justifyContent:'space-between'}}>
             <h1> Best Stuff </h1>
-            <div>
+            <div style={{display:'flex', justifyContent:'center'}}>
               {loginLogout}
               {signUp}
             </div>
