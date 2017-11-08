@@ -17,10 +17,6 @@
   -webkit-transition: border 0.2s, box-shadow 0.2s;
           transition: border 0.2s, box-shadow 0.2s;
 }
-.geosuggest__input:focus {
-  border-color: #267dc0;
-  box-shadow: 0 0 0 transparent;
-}
 .geosuggest__suggests {
   position: absolute;
   top: 100%;
