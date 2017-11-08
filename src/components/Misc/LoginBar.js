@@ -25,10 +25,15 @@ export default class LoginBar extends Component {
     }
 
     return(
-      <div className={"navbar"}>
+      <div className={"navbar"} style={{marginBottom:20, paddingBottom:20}}>
         <div className={"container"}>
-          {loginLogout}
-          {signUp}
+          <div style={{display:'flex', justifyContent:'space-between'}}>
+            <h1> Best Stuff </h1>
+            <div>
+              {loginLogout}
+              {signUp}
+            </div>
+          </div>
         </div>
       </div>
     );

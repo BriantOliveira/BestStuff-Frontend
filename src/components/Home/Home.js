@@ -66,7 +66,6 @@ class Home extends Component{
       <LoginBar loggedIn={this.props.loggedIn} {...this.props}/>
       <div className={"main"}>
         <div className={"container"} >
-          <h1 style={{padding:20}}> Best Stuff </h1>
           <div className={"row"}>
             <div className={"col-lg-7"}>
               <div className={"container"}>
