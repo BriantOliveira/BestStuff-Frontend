@@ -66,8 +66,8 @@ export default class Contest extends Component{
     var locations = [];
     var items = this.state.contest.items;
     for (let i = 0; i < items.length; i++) {
-      locations.append([items[i].lat, items[i].long]);
-    }
+      locations.push([items[i].lat, items[i].long]);
+    } // use map instead
     return locations;
   }
 
@@ -83,7 +83,7 @@ export default class Contest extends Component{
           <div className="row" >
             <div className="col-lg-7">
 
-              <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
+              <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>New Item</button>
               <br />
               {this.drawContests(this.state.contest.items)}
 
