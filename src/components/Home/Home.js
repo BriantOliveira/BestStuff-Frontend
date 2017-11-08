@@ -39,7 +39,6 @@ class Home extends Component{
 
   submitContest() {
     const newName = this.state.newContestName
-    console.log(newName)
     const data = { name: newName }
     if (newName) {
       axios.post('http://localhost:8000/contests/create', data)
@@ -75,8 +74,6 @@ class Home extends Component{
       loginLogout = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/login')}}> Login </button>
       signUp = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
     }
-
-    console.log(this.props.loggedIn)
 
     return (
       <div className={"main"}>

@@ -25,13 +25,17 @@ export default class Contest extends Component{
     this.state = {
       contest: {
         name: "",
-        id: this.props.match.params.id
-      },
-      items: []
+        id: this.props.match.params.id,
+        items: []
+      }
     }
   }
 
   componentWillMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
     const url = `http://localhost:8000/contests/${this.props.match.params.id}`
     axios.get(url)
     .then(response => {
@@ -55,34 +59,33 @@ export default class Contest extends Component{
 
   drawContests(items) {
     return items.map((item, index) => {
-      return <ItemCard key={index} loc={item.loc} name={item.name}/>
+      return <ItemCard key={index} loc={item.place_name} name={item.name}/>
     })
   }
 
 
   displayModal() {
       return (
-        <ItemNew contestId={this.props.match.params.id}/>
+        <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
       )
   }
 
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
-    console.log(contest)
     return (
       <div className="features-3">
-        <div className="row">
+        <div className="row" style={{height:'600px'}}>
           <div className="col-lg-6">
             <div className="container">
               <h1 className="title">{contest.name}</h1>
               <button className="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
               {this.displayModal()}
-              {this.drawContests(this.state.items)}
+              {this.drawContests(this.state.contest.items)}
             </div>
 
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-6" >
             <MapContainer lng={contest.lng} lat={contest.lat}/>
           </div>
         </div>

@@ -9,7 +9,11 @@ export default class ItemNew extends Component{
     super(props)
     this.state = {
       itemName: "",
-      placeName: ""
+      placeName: "",
+      placeId: "",
+      lat: "",
+      long: "",
+      contestId: this.props.contestId
     }
   }
 
@@ -18,15 +22,19 @@ export default class ItemNew extends Component{
     const data = {
         name: this.state.itemName,
         place_name: this.state.placeName,
-        contest: { id:this.props.contestId }
+        place_id: this.state.placeId,
+        lat: this.state.lat,
+        long: this.state.long,
+        contestId: this.props.contestId
     }
 
-    const url = `http://localhost:8000/contests/${this.props.contestId}/update`
-    axios.put(url, data)
+    const url = `http://localhost:8000/items/create`
+
+    axios.post(url, data)
     .then(response => {
       console.log(response)
       if (response.status === 200) {
-        e.target = { dataDismiss: `model` }
+        this.props.dismissAction()
       }
     })
     .catch(err => {
@@ -37,7 +45,7 @@ export default class ItemNew extends Component{
 
   changeName(event) {
     const itemName = event.target.value
-    this.setState({ itemName: itemName })
+    this.setState({ itemName })
   }
 
   changePlace(event) {
@@ -47,6 +55,16 @@ export default class ItemNew extends Component{
 
   clearAll(event) {
     this.setState({itemName: "", placeName: ""})
+  }
+
+  onSuggestSelect(suggest) {
+    console.log(suggest);
+    this.setState({
+      placeName: suggest.description,
+      placeId: suggest.placeId,
+      lat: suggest.location.lat,
+      long: suggest.location.lng
+    })
   }
 
   render() {
@@ -61,14 +79,14 @@ export default class ItemNew extends Component{
             </div>
             <div className="modal-body">
 
-              <div className="col-md-5 mr-auto">
+              <div className="col-md-12">
                 <div className="form-group label-floating">
                   <label className="control-label">Item Name</label>
                   <input name="name" onChange={this.changeName.bind(this)} type="text" value={this.state.itemName} className="form-control" placeholder="Name"/>
                 </div>
                 <div className="form-group">
                   <label className="control-label">Place Name</label>
-                  <Geosuggest onKeyPress={this.changePlace.bind(this)} value={this.state.placeName}  />
+                  <Geosuggest onKeyPress={this.changePlace.bind(this)} value={this.state.placeName} onSuggestSelect={this.onSuggestSelect.bind(this)}  />
                   {/*name="place_name"  type="text"  placeholder="Place Name" */}
                 </div>
 
