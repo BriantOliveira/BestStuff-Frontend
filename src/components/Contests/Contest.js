@@ -6,10 +6,6 @@ import ItemNew from '../Items/ItemNew';
 import LoginBar from '../Misc/LoginBar';
 import axios from 'axios';
 
-const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
-const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
-
-
 export default class Contest extends Component{
 
   constructor(props) {
