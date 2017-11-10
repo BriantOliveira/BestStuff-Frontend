@@ -6,10 +6,6 @@ import ItemNew from '../Items/ItemNew';
 import LoginBar from '../Misc/LoginBar';
 import axios from 'axios';
 
-const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
-const PLACES = "AIzaSyCh4He2DUJ9cCgC6kl31vAmpSH2cqGq0r4";
-
-
 export default class Contest extends Component{
 
   constructor(props) {
@@ -62,15 +58,6 @@ export default class Contest extends Component{
     )
   }
 
-  getLocations() {
-    var locations = [];
-    var items = this.state.contest.items;
-    for (let i = 0; i < items.length; i++) {
-      locations.append([items[i].lat, items[i].long]);
-    }
-    return locations;
-  }
-
   render() {
     var contestId = this.props.match.params.id;
     var contest = this.state.contest
@@ -83,13 +70,13 @@ export default class Contest extends Component{
           <div className="row" >
             <div className="col-lg-7">
 
-              <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>Enroll/Add New Item to this Contest</button>
+              <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i>New Item</button>
               <br />
               {this.drawContests(this.state.contest.items)}
 
             </div>
             <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-              <MapContainer lng={contest.lng} lat={contest.lat} locations={this.getLocations.bind(this)}/>
+              <MapContainer lng={contest.lng} lat={contest.lat} items={this.state.contest.items}/>
             </div>
           </div>
         </div>
