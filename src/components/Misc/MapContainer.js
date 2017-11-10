@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 const MAPS = "AIzaSyBBYy-u-ZsF-3krZWO2fpqp2LYp2noQRbs";
 
 export class MapContainer extends Component {
@@ -10,6 +10,14 @@ export class MapContainer extends Component {
   displayMarkers() {
     console.log("received locations:");
     console.log(this.props.items);
+    var items = this.props.items;
+    return items.map((item) => {
+      return <Marker
+        title={item.name}
+        name={item.place_name}
+        position={{lat:item.lat, lng: item.long}}
+      />
+    })
   }
 
   render() {
@@ -22,6 +30,7 @@ export class MapContainer extends Component {
         google={this.props.google}
         zoom={15}
         >
+        {this.displayMarkers()}
         <InfoWindow onClose={this.onInfoWindowClose}>
           <div>
             <h1>Map</h1>

@@ -30,7 +30,7 @@ export default class ItemCard extends Component {
       <div className="card no-transition">
         <div className="row">
           <div className="col-md-10">
-            <div className="card-body">
+            <div className="card-body" style={{padding:10}}>
 
               <h3 className="card-title">
                 {this.props.name}
