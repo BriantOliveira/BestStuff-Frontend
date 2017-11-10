@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 const MAPS = "AIzaSyAD0CS7T_DtdpNuqcin9DtX79brSndlI6U";
 
 export class MapContainer extends Component {
