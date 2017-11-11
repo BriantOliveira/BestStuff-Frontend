@@ -29,7 +29,7 @@ export default class ItemCard extends Component {
 
       <div className="card no-transition">
         <div className="row">
-          <div className="col-md-10">
+          <div className="col-9">
             <div className="card-body" style={{padding:10}}>
 
               <h3 className="card-title">
@@ -37,7 +37,7 @@ export default class ItemCard extends Component {
               </h3>
               <p className="author">{this.props.loc}</p></div>
             </div>
-            <div className="col-md-2 align-middle d-flex flex-column justify-content-center">
+            <div className="col-2 align-middle d-flex flex-column justify-content-center">
               {this.voteButton()}
             </div>
           </div>
