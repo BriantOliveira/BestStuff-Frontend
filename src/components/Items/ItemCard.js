@@ -15,11 +15,11 @@ export default class ItemCard extends Component {
     this.setState({ voted: !this.state.voted })
     var url;
     if (this.state.voted) {
-      url = `http://localhost:8000/items/${this.props.match.params.id}/vote-up`
+      url = `http://localhost:8000/items/${this.props.id}/vote-down`
     } else {
-      url = `http://localhost:8000/items/${this.props.match.params.id}/vote-down`
+      url = `http://localhost:8000/items/${this.props.id}/vote-up`
     }
-    axios.put(url)
+    axios.post(url)
     .then(response => {
       if (response.status === 200) {
         console.log('Successfully voted!');
