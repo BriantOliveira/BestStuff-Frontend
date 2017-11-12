@@ -18,9 +18,9 @@ export default class ItemCard extends Component {
   voteButton() {
     switch (this.state.voted) {
       case true:
-      return <button type="button" onClick={this.toggleVote.bind(this)} className="btn btn-danger btn-just-icon align-middle"><i className="nc-icon nc-check-2"></i></button>
+      return <button type="button" disabled={!this.props.loggedIn} onClick={this.toggleVote.bind(this)} className="btn btn-danger btn-just-icon align-middle"><i className="nc-icon nc-check-2"></i></button>
       case false:
-      return <button type="button" onClick={this.toggleVote.bind(this)} className="btn btn-outline-info btn-just-icon align-middle"><i className="fa fa-heart"></i></button>
+      return <button type="button" disabled={!this.props.loggedIn} onClick={this.toggleVote.bind(this)} className="btn btn-outline-info btn-just-icon align-middle"><i className="fa fa-heart"></i></button>
     }
   }
 
