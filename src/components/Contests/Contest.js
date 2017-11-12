@@ -47,7 +47,7 @@ export default class Contest extends Component{
 
   drawContests(items) {
     return items.map((item, index) => {
-      return <ItemCard key={index} loc={item.place_name} name={item.name}/>
+      return <ItemCard key={index} loc={item.place_name} name={item.name} id={item.id} loggedIn={this.props.loggedIn}/>
     })
   }
 
