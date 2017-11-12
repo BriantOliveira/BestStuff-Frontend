@@ -13,6 +13,21 @@ export default class ItemCard extends Component {
 
   toggleVote() {
     this.setState({ voted: !this.state.voted })
+    var url;
+    if (this.state.voted) {
+      url = `http://localhost:8000/items/${this.props.match.params.id}/vote-up`
+    } else {
+      url = `http://localhost:8000/items/${this.props.match.params.id}/vote-down`
+    }
+    axios.put(url)
+    .then(response => {
+      if (response.status === 200) {
+        console.log('Successfully voted!');
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   voteButton() {
