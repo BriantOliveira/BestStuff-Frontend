@@ -102,13 +102,6 @@ export default class Contest extends Component{
     })
   }
 
-
-  displayModal() {
-    return (
-      <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
-    )
-  }
-
   getCenterPosition() {
     // re-initialize
     var centerLng = 0;
@@ -129,16 +122,21 @@ export default class Contest extends Component{
     } else {
       return {
         lat: 37.7749,
-        lng: 122.4194
+        lng: -122.4194
       }
     }
-
   }
+
+  displayModal() {
+    return (
+      <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
+    )
+  }
+
 
   render() {
     var contestId = this.props.match.params.id;
-    var contest = this.state.contest
-    var theCenter = this.getCenterPosition();
+    var contest = this.state.contest;
     return (
       <div>
         <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
@@ -156,7 +154,7 @@ export default class Contest extends Component{
 
             </div>
             <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-              <MapContainer center={theCenter} items={this.state.contest.items}/>
+              <MapContainer theCenter={this.getCenterPosition()} items={this.state.contest.items} {...this.props}/>
             </div>
           </div>
         </div>
