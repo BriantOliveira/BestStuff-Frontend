@@ -12,7 +12,7 @@ const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.
 export default class Contest extends Component{
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       contest: {
         name: "",
@@ -20,6 +20,7 @@ export default class Contest extends Component{
         items: []
       }
     }
+    this.getCenterPosition = this.getCenterPosition.bind(this);
   }
 
   componentWillMount() {
@@ -102,31 +103,55 @@ export default class Contest extends Component{
         )
       }
 
-      render() {
-        var contestId = this.props.match.params.id;
-        var contest = this.state.contest
-        return (
-          <div>
-            <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
-            <div className="container">
-              {this.displayModal()}
-              <h1 className="title">{contest.name}</h1>
-              <div className="row" >
-                <div className="col-lg-7">
+    getCenterPosition() {
+      // re-initialize
+      var centerLng = 0;
+      var centerLat = 0;
+      var numItems = 0;
+      this.state.contest.items.map((item) => {
+        centerLng += parseFloat(item.long);
+        centerLat += parseFloat(item.lat);
+        numItems += 1;
+      })
+      console.log(centerLat);
+      console.log(centerLat / numItems)
+      if (numItems > 0) {
+        return {
+          lat: (centerLat / numItems),
+          lng: (centerLng / numItems)
+        }
+      } else {
+        return {
+          lat: 37.7749,
+          lng: 122.4194
+        }
+      }
 
-                  <div className="col-12"><button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
-                </div>
-                <hr/> 
-                <div className="col-12">
-                  {this.drawContests(this.state.contest.items)}
-                </div>
+    }
 
-              </div>
-              <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-                <MapContainer lng={contest.lng} lat={contest.lat} items={this.state.contest.items}/>
-              </div>
-            </div>
+    render() {
+      var contestId = this.props.match.params.id;
+      var contest = this.state.contest
+      var theCenter = this.getCenterPosition();
+      return (
+        <div>
+          <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
+          <div className="container">
+            {this.displayModal()}
+            <h1 className="title">{contest.name}</h1>
+            <div className="row" >
+            <div className="col-lg-7">
+
+            <button className="btn btn-primary btn-lg btn-sm" style={{marginBottom:8}}data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
+            <br />
+            {this.drawContests(this.state.contest.items)}
+
           </div>
+          <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
+            <MapContainer center={theCenter} items={this.state.contest.items}/>
+          </div>
+        </div>
+        </div>
         </div>
 
 
