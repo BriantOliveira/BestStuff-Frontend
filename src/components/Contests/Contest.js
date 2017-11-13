@@ -121,8 +121,8 @@ export default class Contest extends Component{
         centerLat:(this.state.centerLat / this.state.contest.items.length)
       })
       return {
-        lat: this.state.centerLat,
-        lng: this.state.centerLng
+        lat: this.state.centerLat / this.state.contest.items.length,
+        lng: this.state.centerLng / this.state.contest.items.length
       }
     }
 
@@ -144,7 +144,7 @@ export default class Contest extends Component{
 
           </div>
           <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-            <MapContainer lng={contest.lng} lat={contest.lat} items={this.state.contest.items}/>
+            <MapContainer lng={this.getCenterPosition().lng} lat={this.getCenterPosition().lat} items={this.state.contest.items}/>
           </div>
         </div>
         </div>
