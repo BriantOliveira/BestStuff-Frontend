@@ -38,7 +38,7 @@ class App extends Component {
 
     const RenderLogIn = (props) => {
       return(
-        <LogIn setLoggedIn = {this.setLoggedIn} {...props} />
+        <LogIn loggedIn = {this.state.loggedIn} setLoggedIn = {this.setLoggedIn} {...props} />
       )
     }
 

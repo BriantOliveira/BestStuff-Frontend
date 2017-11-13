@@ -33,7 +33,11 @@ export default class Contest extends Component{
     axios.get(url)
     .then(response => {
       if (response.status === 200) {
-        this.setState({contest: response.data})
+        var data = response.data
+        data.items = response.data.items.sort((a, b) => {
+          return b.voteCount - a.voteCount
+        })
+        this.setState({contest: data})
       }
     })
     .catch(error => {
@@ -46,7 +50,6 @@ export default class Contest extends Component{
       return contest.id === id
     })
 
-    // Should only return 1 result
     return result[0]
   }
 
@@ -54,8 +57,11 @@ export default class Contest extends Component{
     const newItems = _.cloneDeep(this.state.contest.items)
     newItems[index].voteCount++
     newItems[index].toggled = true
+    const sorted = newItems.sort((a, b) => {
+      return b.voteCount - a.voteCount
+    })
     this.setState({contest: {
-      items: newItems
+      items: sorted
     }})
   }
 
@@ -63,8 +69,11 @@ export default class Contest extends Component{
     const newItems = _.cloneDeep(this.state.contest.items)
     newItems[index].voteCount--
     newItems[index].toggled = false
+    const sorted = newItems.sort((a, b) => {
+      return b.voteCount - a.voteCount
+    })
     this.setState({contest: {
-      items: newItems
+      items: sorted
     }})
   }
 
@@ -74,25 +83,26 @@ export default class Contest extends Component{
     }).map((item, index) => {
       return (
         <ItemCard
-        key={index}
-        index={index}
-        loc={item.place_name}
-        name={item.name}
-        id={item.id}
-        toggled={(item.toggled ? item.toggled : false)}
-        voteCount={item.voteCount}
-        loggedIn={this.props.loggedIn}
-        voteUp={this.voteUp.bind(this)}
-        voteDown={this.voteDown.bind(this)}/>)
-      })
-    }
+          key={index}
+          index={index}
+          loc={item.place_name}
+          name={item.name}
+          id={item.id}
+          champion={index === 0 ? true : false}
+          toggled={(item.toggled ? item.toggled : false)}
+          voteCount={item.voteCount}
+          loggedIn={this.props.loggedIn}
+          voteUp={this.voteUp.bind(this)}
+          voteDown={this.voteDown.bind(this)}/>)
+        })
+      }
 
 
-    displayModal() {
-      return (
-        <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
-      )
-    }
+      displayModal() {
+        return (
+          <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
+        )
+      }
 
     getCenterPosition() {
       // re-initialize

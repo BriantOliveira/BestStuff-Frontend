@@ -10,7 +10,9 @@ export default class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      error: "",
+      isError: false
     }
   }
 
@@ -24,7 +26,14 @@ export default class LogIn extends Component {
     this.setState({ password: text })
   }
 
-  submitNewUser() {
+  clearAll() {
+    this.setState({username: "", password: ""})
+  }
+
+  submitNewUser(e) {
+    e.preventDefault
+    console.log("Here is the event....", e.target)
+
     const name = this.state.username
     const pass = this.state.password
     const data = { username: name, password: pass }
@@ -33,32 +42,58 @@ export default class LogIn extends Component {
       .then(response => {
         console.log(response)
         if (response.status === 200) {
-          this.setState({
-            loggedIn: true
-          })
           this.props.setLoggedIn(true)
+          this.props.history.goBack()
+          this.setState({error: "", isError: false})
+
         }
       })
       .catch(err => {
-        console.log(err)
-      }).then(() => {
-        this.props.history.push('/')
+        console.log("Got an Error from submitNewUser() ", err)
+        this.setState({error: err.message, isError: true})
       })
     }
   }
 
   render() {
     return (
-      <div className="container">
-        <h3>Log In</h3>
-        <div className="form-group">
-          <h6> Name </h6>
-          <input name="name" onChange={this.updateUsername.bind(this)} className="form-control border-input" value={this.state.username} placeholder="Username"/>
-          <h6> Password </h6>
-          <input name="password" type="password" onChange={this.updatePassword.bind(this)} className="form-control border-input" value={this.state.password} placeholder="Password"/>
+      <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 className="modal-title" id="loginModalLabel">LogIn</h4>
+            </div>
+            <div className="modal-body">
+              <div className="col-md-12">
+                <p>{this.state.error}</p>
+                <div className="form-group label-floating">
+                  <label className="control-label">Username</label>
+                  <input name="username" type="username" onChange={this.updateUsername.bind(this)} className="form-control border-input" value={this.state.username} placeholder="Username"/>
+                </div>
+                <div className="form-group">
+                  <label className="control-label">Password</label>
+                  <input name="password" type="password" onChange={this.updatePassword.bind(this)} className="form-control border-input" value={this.state.password} placeholder="Password"/>
+                  {/*name="place_name"  type="text"  placeholder="Place Name" */}
+                </div>
+
+
+
+              </div>
+            </div>
+            <div className="modal-footer">
+              <div className="left-side">
+                <button type="button" onClick={this.clearAll.bind(this)} className="btn btn-default btn-link">Clear Data</button>
+              </div>
+              <div className="divider"></div>
+              <div className="right-side">
+                <button type="button" onClick={(e) => this.submitNewUser(e)} className="btn btn-success btn-link" data-dismiss="modal">Submit</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <button onClick={this.submitNewUser.bind(this)} className="btn btn-primary">Submit</button>
       </div>
+
     );
   }
 }

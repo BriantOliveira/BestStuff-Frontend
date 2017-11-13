@@ -11,7 +11,7 @@ export default class LoginBar extends Component {
 
   logout() {
     axios.get(serverPath + '/logout');
-    this.props.history.push('/');
+    this.props.history.goBack();
     this.props.setLoggedIn(false)
   }
 
@@ -21,10 +21,10 @@ export default class LoginBar extends Component {
     let loginLogout = null;
     let signUp = null;
     if (this.props.loggedIn) {
-      loginLogout = <button className={"btn btn-primary"} onClick={this.logout.bind(this)}> Logout </button>
+      loginLogout = <button className={"btn btn-primary btn-sm"} data-toggle="modal" data-target="#loginModal" onClick={this.logout.bind(this)}> Logout </button>
     } else {
-      loginLogout = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/login')}}> Login </button>
-      signUp = <button className={"btn btn-primary"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
+      loginLogout = <button className={"btn btn-primary btn-sm"} data-toggle="modal" data-target="#loginModal" onClick={() => {this.props.history.push('/login')}}> Login </button>
+      signUp = <button className={"btn btn-primary btn-sm"} onClick={() => {this.props.history.push('/signup')}}> Sign Up </button>
     }
 
     return(
