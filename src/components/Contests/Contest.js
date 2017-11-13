@@ -138,7 +138,7 @@ export default class Contest extends Component{
             <div className="row" >
             <div className="col-lg-7">
 
-            <button className="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
+            <button className="btn btn-primary btn-lg btn-sm" style={{marginBottom:8}}data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
             <br />
             {this.drawContests(this.state.contest.items)}
 
