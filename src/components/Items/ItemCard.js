@@ -81,11 +81,7 @@ export default class ItemCard extends Component {
               <div className="col-1 align-middle d-flex flex-column justify-content-center" >
                 {this.voteButton()}
               </div>
-              <div className="col-12">
-                <div className="progress">
-                  <div className="progress-bar progress-bar-primary" role="progressbar" style={{width: `${(this.props.voteCount/this.props.highestVote)*100}%`}} aria-valuenow={(this.props.voteCount/this.props.highestVote)*100} aria-valuemin="0" aria-valuemax="100"></div>
-                </div><br/>
-              </div>
+        
 
             </div>
           </div>
@@ -112,11 +108,6 @@ export default class ItemCard extends Component {
                 </div>
                 <div className="col-2 align-middle d-flex flex-column justify-content-center" >
                   {this.voteButton()}
-                </div>
-                <div className="col-12">
-                  <div className="progress">
-                    <div className="progress-bar progress-bar-primary" role="progressbar" style={{width: `${(this.props.voteCount/this.props.highestVote)*100}%`}} aria-valuenow={(this.props.voteCount/this.props.highestVote)*100} aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><br/>
                 </div>
 
               </div>
