@@ -22,12 +22,12 @@ export default class ItemNew extends Component{
 
   sendData(e) {
     const data = {
-        name: this.state.itemName,
-        place_name: this.state.placeName,
-        place_id: this.state.placeId,
-        lat: this.state.lat,
-        long: this.state.long,
-        contestId: this.props.contestId
+      name: this.state.itemName,
+      place_name: this.state.placeName,
+      place_id: this.state.placeId,
+      lat: this.state.lat,
+      long: this.state.long,
+      contestId: this.props.contestId
     }
 
     const url = `${serverPath}/items/create`
@@ -60,13 +60,12 @@ export default class ItemNew extends Component{
   }
 
   onSuggestSelect(suggest) {
-    console.log(suggest);
-    this.setState({
+    if (suggest) {this.setState({
       placeName: suggest.description,
       placeId: suggest.placeId,
       lat: suggest.location.lat,
       long: suggest.location.lng
-    })
+    })}
   }
 
   render() {
