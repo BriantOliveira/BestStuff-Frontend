@@ -5,6 +5,7 @@
   "homepage": "http://www.beststuff.life",
   "dependencies": {
     "axios": "^0.17.0",
+    "fuse.js": "^3.2.0",
     "google-maps-react": "^1.1.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
