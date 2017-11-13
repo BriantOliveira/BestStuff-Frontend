@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 
 export default class ItemCard extends Component {
@@ -15,9 +17,9 @@ export default class ItemCard extends Component {
     this.setState({ voted: !this.state.voted })
     var url;
     if (this.state.voted) {
-      url = `http://localhost:8000/items/${this.props.id}/vote-down`
+      url = `${serverPath}/items/${this.props.id}/vote-down`
     } else {
-      url = `http://localhost:8000/items/${this.props.id}/vote-up`
+      url = `${serverPath}/items/${this.props.id}/vote-up`
     }
     axios.post(url)
     .then(response => {

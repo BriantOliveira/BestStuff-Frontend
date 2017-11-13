@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 export default class LoginBar extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ export default class LoginBar extends Component {
   }
 
   logout() {
-    axios.get('http://localhost:8000/logout');
+    axios.get(serverPath + '/logout');
     this.props.history.push('/');
     this.props.setLoggedIn(false)
   }

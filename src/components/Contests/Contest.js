@@ -5,6 +5,8 @@ import ItemCard from '../Items/ItemCard';
 import ItemNew from '../Items/ItemNew';
 import LoginBar from '../Misc/LoginBar';
 import axios from 'axios';
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 export default class Contest extends Component{
 
@@ -24,7 +26,7 @@ export default class Contest extends Component{
   }
 
   fetchData() {
-    const url = `http://localhost:8000/contests/${this.props.match.params.id}`
+    const url = `${serverPath}/contests/${this.props.match.params.id}`
     axios.get(url)
     .then(response => {
       if (response.status === 200) {

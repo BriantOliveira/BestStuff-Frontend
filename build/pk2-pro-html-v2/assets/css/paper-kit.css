@@ -11,8 +11,6 @@
  * ========================================================= */
 /*      light colors - used for select dropdown         */
 /*           Font Smoothing      */
-
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td-name, td, button, input, select, textarea {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -71,7 +69,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 }
 
 .title,
-.cardTitle,
+.card-title,
 .info-title,
 .footer-brand,
 .footer-big h5,
@@ -81,8 +79,8 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 }
 .title,
 .title a,
-.cardTitle,
-.cardTitle a,
+.card-title,
+.card-title a,
 .info-title,
 .info-title a,
 .footer-brand,
@@ -1808,13 +1806,13 @@ textarea.form-control {
 }
 .section-image .title,
 .section-image .info-title,
-.section-image .card-plain .cardTitle,
+.section-image .card-plain .card-title,
 .section-gold .title,
 .section-gold .info-title,
-.section-gold .card-plain .cardTitle,
+.section-gold .card-plain .card-title,
 .section-dark .title,
 .section-dark .info-title,
-.section-dark .card-plain .cardTitle {
+.section-dark .card-plain .card-title {
   color: #FFFFFF !important;
 }
 .section-image .category,
@@ -3422,8 +3420,8 @@ input.ct-danger + span + label + span.switch-right {
 
   .navbar-nav li .dropdown-menu:before,
   #dropdown-row .dropdown .dropdown-menu:before,
-  .card.cardJustText .dropdown .dropdown-menu:before,
-  .cardJustText .dropdown .dropdown-menu:before,
+  .card.card-just-text .dropdown .dropdown-menu:before,
+  .card-just-text .dropdown .dropdown-menu:before,
   .dropdown-btn .dropdown-menu:before {
     border-bottom: 11px solid #F1EAE0;
     border-left: 11px solid transparent;
@@ -3442,8 +3440,8 @@ input.ct-danger + span + label + span.switch-right {
 
   .navbar-nav li .dropdown-menu:after,
   #dropdown-row .dropdown .dropdown-menu:after,
-  .card.cardJustText .dropdown .dropdown-menu:after,
-  .cardJustText .dropdown .dropdown-menu:after,
+  .card.card-just-text .dropdown .dropdown-menu:after,
+  .card-just-text .dropdown .dropdown-menu:after,
   .dropdown-btn .dropdown-menu:after {
     border-bottom: 11px solid #FFFCF5;
     border-left: 11px solid transparent;
@@ -7483,7 +7481,7 @@ video {
 
 */
 /*
-
+	
 	1. Buttons
 
  */
@@ -7758,7 +7756,7 @@ a.pswp__share--download:hover {
 }
 
 /*
-
+	
 	4. Caption
 
  */
@@ -7848,8 +7846,8 @@ a.pswp__share--download:hover {
   margin: 0;
 }
 .pswp--css_animation .pswp__preloader__cut {
-  /*
-  	The idea of animating inner circle is based on Polymer ("material") loading indicator
+  /* 
+  	The idea of animating inner circle is based on Polymer ("material") loading indicator 
   	 by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html
   */
   position: relative;
@@ -7901,7 +7899,7 @@ a.pswp__share--download:hover {
   }
 }
 /*
-
+	
 	6. Additional styles
 
  */
@@ -8445,7 +8443,6 @@ a.pswp__share--download:hover {
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
-  width: 500px;
   border: 0 none;
   -webkit-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   -moz-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
@@ -8460,7 +8457,6 @@ a.pswp__share--download:hover {
   -ms-transform: translateY(-10px);
   -moz-transform: translateY(-10px);
 }
-
 .card.no-transition:hover, .card.page-carousel:hover, .card.card-refine:hover, .card.card-register:hover {
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
   transform: none;
@@ -8498,7 +8494,7 @@ a.pswp__share--download:hover {
   box-shadow: none;
   border-radius: 0;
 }
-.card.card-plain .cardBlock {
+.card.card-plain .card-block {
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -8520,14 +8516,14 @@ a.pswp__share--download:hover {
   margin: 0px auto;
   margin-bottom: 30px;
 }
-.card.card-testimonial .cardBlock {
+.card.card-testimonial .card-block {
   padding: 15px 30px;
   margin-top: -70px;
 }
-.card.card-testimonial .cardBlock .card-description {
+.card.card-testimonial .card-block .card-description {
   font-style: italic;
 }
-.card.card-testimonial .cardBlock .card-category {
+.card.card-testimonial .card-block .card-category {
   margin-bottom: 20px;
 }
 .card.card-testimonial .card-avatar {
@@ -8538,7 +8534,7 @@ a.pswp__share--download:hover {
   width: 100px;
   height: 100px;
 }
-.card.card-testimonial .card-footer .cardTitle {
+.card.card-testimonial .card-footer .card-title {
   color: #333333;
   text-align: center;
 }
@@ -8560,19 +8556,19 @@ a.pswp__share--download:hover {
   background-color: #FFF;
   border: 0;
 }
-.card.card-contact .card-header .cardTitle {
+.card.card-contact .card-header .card-title {
   color: #66615B;
   margin-top: 0px;
   padding-bottom: 25px;
   border-bottom: 1px solid #DDDDDD;
 }
-.card.card-contact .cardBlock .card-icon {
+.card.card-contact .card-block .card-icon {
   float: left;
   margin-top: 24px;
   margin-right: 10px;
   border: 0;
 }
-.card.card-contact .cardBlock .card-icon i {
+.card.card-contact .card-block .card-icon i {
   font-size: 30px;
   padding: 25px;
   width: 50px;
@@ -8592,7 +8588,7 @@ a.pswp__share--download:hover {
 .card.card-register label {
   margin-top: 15px;
 }
-.card.card-register .cardTitle {
+.card.card-register .card-title {
   color: #B33C12;
   text-align: center;
 }
@@ -8609,13 +8605,13 @@ a.pswp__share--download:hover {
   color: #FFF;
   border-color: rgba(255, 255, 255, 0.3);
 }
-.card.card-blog, .card.card-testimonial .card-description + .cardTitle {
+.card.card-blog, .card.card-testimonial .card-description + .card-title {
   margin-top: 30px;
 }
-.card.card-blog .card-image .img, .card.card-testimonial .card-description + .cardTitle .card-image .img {
+.card.card-blog .card-image .img, .card.card-testimonial .card-description + .card-title .card-image .img {
   border-radius: 12px;
 }
-.card.card-blog .card-image .cardTitle, .card.card-testimonial .card-description + .cardTitle .card-image .cardTitle {
+.card.card-blog .card-image .card-title, .card.card-testimonial .card-description + .card-title .card-image .card-title {
   text-align: center;
 }
 .card.card:not(.card-plain) .card-image .img {
@@ -8680,7 +8676,7 @@ a.pswp__share--download:hover {
   top: 2px;
   margin-right: 5px;
 }
-.card .cardTitle-uppercase {
+.card .card-title-uppercase {
   text-transform: uppercase;
 }
 .card .header {
@@ -8697,10 +8693,10 @@ a.pswp__share--download:hover {
 .card .header .card-category {
   padding: 15px;
 }
-.card .cardBlock .card-footer {
+.card .card-block .card-footer {
   padding: 0;
 }
-.card .cardBlock .card-description + .card-footer {
+.card .card-block .card-description + .card-footer {
   padding-top: 10px;
 }
 .card .more {
@@ -8745,18 +8741,17 @@ a.pswp__share--download:hover {
 .card .label i {
   font-size: 15px;
 }
-.card > .cardTitle {
+.card > .card-title {
   margin: 0;
   padding: 30px 0 0;
 }
-.card .cardBlock {
+.card .card-block {
   padding: 20px;
 }
-.card .cardBlock .cardTitle {
+.card .card-block .card-title {
   margin: 5px 0 0 0;
-  color: #FFF !important;
 }
-.card .cardBlock .card-category ~ .cardTitle {
+.card .card-block .card-category ~ .card-title {
   margin-top: 5px;
 }
 .card .card-text {
@@ -8807,7 +8802,7 @@ a.pswp__share--download:hover {
   font-size: 80px;
   padding: 22px;
 }
-.card.card-with-border .cardBlock {
+.card.card-with-border .card-block {
   padding: 15px 15px 25px 15px;
 }
 .card.card-with-border .card-footer {
@@ -8825,17 +8820,17 @@ a.pswp__share--download:hover {
   z-index: 1;
   border-radius: 5px;
 }
-.card.cardJustText cardBlock {
+.card.card-just-text .card-block {
   padding: 50px 65px;
   text-align: center;
 }
-.card.cardJustText #dLabel {
+.card.card-just-text #dLabel {
   float: right;
 }
-.card.cardJustText #dLabel i {
+.card.card-just-text #dLabel i {
   font-size: 20px;
 }
-.card.cardJustText .dropdown-menu {
+.card.card-just-text .dropdown-menu {
   margin-top: 55px;
 }
 .card[data-background="image"] {
@@ -8853,7 +8848,7 @@ a.pswp__share--download:hover {
   margin: 0 auto;
   text-align: center;
 }
-.card[data-background="image"] .cardTitle {
+.card[data-background="image"] .card-title {
   color: #FFF;
   margin-top: 10px;
 }
@@ -8881,7 +8876,7 @@ a.pswp__share--download:hover {
 .card[data-background="image"] .card-description, .card[data-background="color"] .card-description, .card[data-color] .card-description {
   color: rgba(255, 255, 255, 0.7);
 }
-.card[data-background="image"] .cardTitle,
+.card[data-background="image"] .card-title,
 .card[data-background="image"] .card-category,
 .card[data-background="image"] .card-text,
 .card[data-background="image"] .card-block,
@@ -8890,7 +8885,7 @@ a.pswp__share--download:hover {
 .card[data-background="image"] small,
 .card[data-background="image"] [class*="text-"],
 .card[data-background="image"] ul li b,
-.card[data-background="image"] a:not(.btn), .card[data-background="color"] .cardTitle,
+.card[data-background="image"] a:not(.btn), .card[data-background="color"] .card-title,
 .card[data-background="color"] .card-category,
 .card[data-background="color"] .card-text,
 .card[data-background="color"] .card-block,
@@ -8899,7 +8894,7 @@ a.pswp__share--download:hover {
 .card[data-background="color"] small,
 .card[data-background="color"] [class*="text-"],
 .card[data-background="color"] ul li b,
-.card[data-background="color"] a:not(.btn), .card[data-color] .cardTitle,
+.card[data-background="color"] a:not(.btn), .card[data-color] .card-title,
 .card[data-color] .card-category,
 .card[data-color] .card-text,
 .card[data-color] .card-block,
@@ -8965,7 +8960,7 @@ a.pswp__share--download:hover {
   background-size: cover;
   border-radius: 12px 12px 0 0;
 }
-.card-profile .card-block .cardTitle {
+.card-profile .card-block .card-title {
   margin-top: 5px !important;
 }
 .card-profile .card-block .card-category {
@@ -9016,7 +9011,7 @@ a.pswp__share--download:hover {
 .card-pricing .card-icon.icon-warning {
   color: #fbc658;
 }
-.card-pricing .cardTitle {
+.card-pricing .card-title {
   margin-top: 30px !important;
 }
 .card-pricing ul {
@@ -9050,12 +9045,12 @@ a.pswp__share--download:hover {
 .card-pricing.card-background-image .card-description {
   color: #FFFFFF !important;
 }
-.card-pricing.card-background-image .cardTitle small {
+.card-pricing.card-background-image .card-title small {
   color: rgba(255, 255, 255, 0.6);
 }
 
 .card-pricing.card-plain .card-category,
-.card-pricing.card-plain .cardTitle {
+.card-pricing.card-plain .card-title {
   color: #333333;
 }
 .card-pricing.card-plain ul li b {
@@ -9063,11 +9058,11 @@ a.pswp__share--download:hover {
   color: #333333;
 }
 
-.cardBigShadow {
+.card-big-shadow {
   max-width: 320px;
   position: relative;
 }
-.cardBigShadow:before {
+.card-big-shadow:before {
   background-image: url("http://static.tumblr.com/i21wc39/coTmrkw40/shadow.png");
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -9082,7 +9077,7 @@ a.pswp__share--download:hover {
   z-index: 0;
 }
 
-.card-image.cardBigShadow {
+.card-image.card-big-shadow {
   max-width: 100%;
 }
 .card-image .card {
@@ -9094,7 +9089,7 @@ a.pswp__share--download:hover {
   margin-top: -20px;
 }
 
-.section-image .card-user.card-plain .cardTitle,
+.section-image .card-user.card-plain .card-title,
 .section-image .card-user.card-plain .card-description {
   color: #FFFFFF;
 }
@@ -9197,13 +9192,13 @@ a.pswp__share--download:hover {
   text-transform: none;
   margin-top: -65px;
 }
-.card-product .author .cardTitle {
+.card-product .author .card-title {
   color: #403D39;
   line-height: 24px;
   margin-bottom: 5px !important;
   margin-top: 0;
 }
-.card-product .author .cardTitle small {
+.card-product .author .card-title small {
   color: #ccc;
 }
 .card-product .author .card-category {
@@ -9214,7 +9209,7 @@ a.pswp__share--download:hover {
   box-shadow: none !important;
 }
 
-.section-dark .card-profile.card-plain .cardTitle {
+.section-dark .card-profile.card-plain .card-title {
   color: #FFFFFF !important;
 }
 .section-dark .title {
@@ -9222,7 +9217,7 @@ a.pswp__share--download:hover {
 }
 
 .page-header .card-pricing.card-plain .card-category,
-.page-header .card-pricing.card-plain .cardTitle {
+.page-header .card-pricing.card-plain .card-title {
   color: #FFFFFF;
 }
 
@@ -9666,7 +9661,7 @@ body {
   z-index: 2;
   text-align: center;
 }
-.background-img .card.cardJustText .card-block {
+.background-img .card.card-just-text .card-block {
   padding: 50px 30px;
 }
 .background-img .card .icon {
@@ -9922,7 +9917,7 @@ body {
 .card.card-profile [class*=col-] .card-block {
   padding-top: 0px;
 }
-.card.card-profile [class*=col-] .card-block .cardTitle {
+.card.card-profile [class*=col-] .card-block .card-title {
   margin-top: 10px !important;
 }
 
@@ -10026,7 +10021,7 @@ body {
   color: #fff;
   text-align: center;
 }
-#testimonials .testimonials-2 .card .carousel-inner .carousel-item .carousel-caption .card-testimonial .card-footer .cardTitle,
+#testimonials .testimonials-2 .card .carousel-inner .carousel-item .carousel-caption .card-testimonial .card-footer .card-title,
 #testimonials .testimonials-2 .card .carousel-inner .carousel-item .carousel-caption .card-testimonial .card-footer .card-avatar {
   color: #FFFFFF;
 }
@@ -10200,7 +10195,7 @@ body {
 .register .card-register {
   background-color: #FFFFFF;
 }
-.register .card-register .cardTitle {
+.register .card-register .card-title {
   color: #66615b;
 }
 
@@ -10564,7 +10559,7 @@ body {
   color: #403D39;
   font-weight: 600;
 }
-.blog .cardBigShadow, .blog-page .cardBigShadow {
+.blog .card-big-shadow, .blog-page .card-big-shadow {
   max-width: 100%;
 }
 .blog .card, .blog-page .card {
@@ -10871,7 +10866,7 @@ body {
 .ecommerce .article-image {
   margin-top: 25px;
 }
-.ecommerce .article-image .cardBigShadow {
+.ecommerce .article-image .card-big-shadow {
   max-width: 100%;
 }
 .ecommerce .article-image .card {

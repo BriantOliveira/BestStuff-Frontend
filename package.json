@@ -1,7 +1,8 @@
 {
-  "name": "client",
+  "name": "best-stuff",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://www.beststuff.life",
   "dependencies": {
     "axios": "^0.17.0",
     "google-maps-react": "^1.1.2",

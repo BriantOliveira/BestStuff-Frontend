@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Geosuggest from 'react-geosuggest'
 import styles from './geosuggest.css'
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 export default class ItemNew extends Component{
 
@@ -28,7 +30,7 @@ export default class ItemNew extends Component{
         contestId: this.props.contestId
     }
 
-    const url = `http://localhost:8000/items/create`
+    const url = `${serverPath}/items/create`
 
     axios.post(url, data)
     .then(response => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 export default class SignUp extends Component {
 
@@ -27,7 +28,7 @@ export default class SignUp extends Component {
     const pass = this.state.password
     const data = { username: name, password: pass }
     if (name && pass) {
-      axios.post('http://localhost:8000/users/create', data)
+      axios.post(serverPath + '/users/create', data)
       .then(response => {
         console.log(response)
         if (response.status === 200) {

@@ -4,6 +4,8 @@ import testData from '../../testData.js';
 import ContestCard from '../Contests/ContestCard';
 import LoginBar from '../Misc/LoginBar'
 import axios from 'axios';
+import paths from '../../paths'
+const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.prod
 
 class Home extends Component{
   constructor(props) {
@@ -15,7 +17,7 @@ class Home extends Component{
   }
 
   componentWillMount() {
-    axios.get('http://localhost:8000/contests')
+    axios.get(serverPath + '/contests')
     .then(response => {
       if (response.status === 200) {
         console.log(response)
@@ -42,7 +44,7 @@ class Home extends Component{
     const newName = this.state.newContestName
     const data = { name: newName }
     if (newName) {
-      axios.post('http://localhost:8000/contests/create', data)
+      axios.post(serverPath + '/contests/create', data)
       .then(response => {
         console.log(response)
         if (response.status === 200) {
