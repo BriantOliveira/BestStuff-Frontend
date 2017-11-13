@@ -41,37 +41,77 @@ export default class ItemCard extends Component {
   }
 
   voteButton() {
-
+    if (this.props.loggedIn){
       if (!this.props.toggled) {
         return <button type="button" onClick={this.toggleVote.bind(this)} className="btn btn-outline-info btn-just-icon align-middle"><i className="fa fa-heart"></i></button>
       } else {
         return <button type="button" onClick={this.toggleVote.bind(this)} className="btn btn-danger btn-just-icon align-middle"><i className="nc-icon nc-check-2"></i></button>
       }
-
+    } else {
+      return <button type="button" className="btn btn-outline-default btn-just-icon align-middle" data-toggle="tooltip" data-placement="bottom" title="Please login to vote"><i className="fa fa-heart"></i></button>
+    }
   }
 
-
   render() {
-    return(
-      <div className="card no-transition">
-        <div className="row">
-          <div className="col-9">
-            <div className="card-body" style={{padding:10}}>
+    if (this.props.champion) {
+      return (
+        <div className="card card-just-text champion" data-background="color" data-color="yellow" >
+          <div className="row">
+            <div className="col-8">
+              <div className="champion card-body" style={{padding:10}}>
+                <div className="champion description">
+                  <h6 className="card-category champion">Current Champion</h6>
+                  <h3 className="card-title champion">
+                    <i className="nc-icon nc-trophy champion"></i> {this.props.name}
+                  </h3>
+                  <p className="author" style={{color: `#000`}}>{this.props.loc}</p>
 
-              <h3 className="card-title">
-                {this.props.name}
-              </h3>
-              <p className="author">{this.props.loc}</p></div>
+                </div>
+              </div>
             </div>
-            <div className="col-1 align-middle d-flex flex-column justify-content-center">
-              <h5>{this.props.voteCount}</h5>
-            </div>
+
             <div className="col-2 align-middle d-flex flex-column justify-content-center">
+              <h6 style={{textAlign: 'center'}}>Votes</h6><br/>
+
+
+              <h5 style={{textAlign: 'center'}}>{this.props.voteCount}</h5>
+
+
+            </div>
+            <div className="col-1 align-middle d-flex flex-column justify-content-center" >
               {this.voteButton()}
             </div>
 
           </div>
         </div>
       )
+    } else {
+      return (
+        <div className="card no-transition">
+          <div className="row">
+            <div className="col-8">
+              <div className="card-body" style={{padding:10}}>
+
+                <h3 className="card-title">
+                  {this.props.name}
+                </h3>
+                <p className="author">{this.props.loc}</p></div>
+              </div>
+              <div className="col-2 align-middle d-flex flex-column justify-content-center">
+                <h6 style={{textAlign: 'center'}}>Votes</h6><br/>
+
+
+                <h5 style={{textAlign: 'center'}}>{this.props.voteCount}</h5>
+
+
+              </div>
+              <div className="col-2 align-middle d-flex flex-column justify-content-center" >
+                {this.voteButton()}
+              </div>
+
+            </div>
+          </div>
+        )
+      }
     }
   }

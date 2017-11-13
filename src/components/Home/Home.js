@@ -20,7 +20,6 @@ class Home extends Component{
     axios.get(serverPath + '/contests')
     .then(response => {
       if (response.status === 200) {
-        console.log(response)
         this.setState({contests: response.data})
       }
     })

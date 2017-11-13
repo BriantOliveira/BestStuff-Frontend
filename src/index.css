@@ -7,3 +7,34 @@ body {
 .modal-header button.close {
   margin-top: -5px !important;
 }
+
+.force-black {
+  color: #444 !important;
+}
+
+.champion, .card-category, .card[data-backgroun="color"]{
+  color: #444 !important;
+}
+
+.champion > .card[data-background="color"] .card-title .card[data-color] .card-title {
+  color: #444 !important;
+}
+
+.card[data-color="blue"] {
+  background: #6ec7e0;
+}
+.card[data-color="green"] {
+  background: #86d9ab;
+}
+.card[data-color="yellow"] {
+  background: #fcd27b;
+}
+.card[data-color="brown"] {
+  background: #e4c4a1;
+}
+.card[data-color="purple"] {
+  background: #cc90cc;
+}
+.card[data-color="orange"] {
+  background: #f7765f;
+}
