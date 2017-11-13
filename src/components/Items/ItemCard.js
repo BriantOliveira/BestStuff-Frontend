@@ -63,40 +63,13 @@ export default class ItemCard extends Component {
                   <h6 className="card-category champion">Current Champion</h6>
                   <h3 className="card-title champion">
                     <i className="nc-icon nc-trophy champion"></i> {this.props.name}
-                  </h3>
-                  <p className="author" style={{color: `#000`}}>{this.props.loc}</p>
+                    </h3>
+                    <p className="author" style={{color: `#000`}}>{this.props.loc}</p>
 
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="col-2 align-middle d-flex flex-column justify-content-center">
-              <h6 style={{textAlign: 'center'}}>Votes</h6><br/>
-
-
-              <h5 style={{textAlign: 'center'}}>{this.props.voteCount}</h5>
-
-
-            </div>
-            <div className="col-1 align-middle d-flex flex-column justify-content-center" >
-              {this.voteButton()}
-            </div>
-
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div className="card no-transition">
-          <div className="row">
-            <div className="col-8">
-              <div className="card-body" style={{padding:10}}>
-
-                <h3 className="card-title">
-                  {this.props.name}
-                </h3>
-                <p className="author">{this.props.loc}</p></div>
-              </div>
               <div className="col-2 align-middle d-flex flex-column justify-content-center">
                 <h6 style={{textAlign: 'center'}}>Votes</h6><br/>
 
@@ -105,13 +78,50 @@ export default class ItemCard extends Component {
 
 
               </div>
-              <div className="col-2 align-middle d-flex flex-column justify-content-center" >
+              <div className="col-1 align-middle d-flex flex-column justify-content-center" >
                 {this.voteButton()}
+              </div>
+              <div className="col-12">
+                <div className="progress">
+                  <div className="progress-bar progress-bar-primary" role="progressbar" style={{width: `${(this.props.voteCount/this.props.highestVote)*100}%`}} aria-valuenow={(this.props.voteCount/this.props.highestVote)*100} aria-valuemin="0" aria-valuemax="100"></div>
+                </div><br/>
               </div>
 
             </div>
           </div>
         )
+      } else {
+        return (
+          <div className="card no-transition">
+            <div className="row">
+              <div className="col-8">
+                <div className="card-body" style={{padding:10}}>
+
+                  <h3 className="card-title">
+                    {this.props.name}
+                  </h3>
+                  <p className="author">{this.props.loc}</p></div>
+                </div>
+                <div className="col-2 align-middle d-flex flex-column justify-content-center">
+                  <h6 style={{textAlign: 'center'}}>Votes</h6><br/>
+
+
+                  <h5 style={{textAlign: 'center'}}>{this.props.voteCount}</h5>
+
+
+                </div>
+                <div className="col-2 align-middle d-flex flex-column justify-content-center" >
+                  {this.voteButton()}
+                </div>
+                <div className="col-12">
+                  <div className="progress">
+                    <div className="progress-bar progress-bar-primary" role="progressbar" style={{width: `${(this.props.voteCount/this.props.highestVote)*100}%`}} aria-valuenow={(this.props.voteCount/this.props.highestVote)*100} aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><br/>
+                </div>
+
+              </div>
+            </div>
+          )
+        }
       }
     }
-  }

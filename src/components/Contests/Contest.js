@@ -18,7 +18,8 @@ export default class Contest extends Component{
         name: "",
         id: this.props.match.params.id,
         items: []
-      }
+      },
+      highestVote: 10
     }
     this.getCenterPosition = this.getCenterPosition.bind(this);
   }
@@ -59,9 +60,12 @@ export default class Contest extends Component{
     const sorted = newItems.sort((a, b) => {
       return b.voteCount - a.voteCount
     })
-    this.setState({contest: {
-      items: sorted
-    }})
+    this.setState({
+      contest: {
+        items: sorted
+      },
+      highestVote: sorted[0].voteCount
+    })
   }
 
   voteDown(index) {
@@ -90,71 +94,75 @@ export default class Contest extends Component{
           champion={index === 0 ? true : false}
           toggled={(item.toggled ? item.toggled : false)}
           voteCount={item.voteCount}
+          highestVote={this.state.highestVote}
           loggedIn={this.props.loggedIn}
           voteUp={this.voteUp.bind(this)}
-          voteDown={this.voteDown.bind(this)}/>)
-        })
+          voteDown={this.voteDown.bind(this)}/>
+      )
+    })
+  }
+
+
+  displayModal() {
+    return (
+      <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
+    )
+  }
+
+  getCenterPosition() {
+    // re-initialize
+    var centerLng = 0;
+    var centerLat = 0;
+    var numItems = 0;
+    this.state.contest.items.map((item) => {
+      centerLng += parseFloat(item.long);
+      centerLat += parseFloat(item.lat);
+      numItems += 1;
+    })
+    console.log(centerLat);
+    console.log(centerLat / numItems)
+    if (numItems > 0) {
+      return {
+        lat: (centerLat / numItems),
+        lng: (centerLng / numItems)
       }
-
-
-      displayModal() {
-        return (
-          <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
-        )
+    } else {
+      return {
+        lat: 37.7749,
+        lng: 122.4194
       }
-
-    getCenterPosition() {
-      // re-initialize
-      var centerLng = 0;
-      var centerLat = 0;
-      var numItems = 0;
-      this.state.contest.items.map((item) => {
-        centerLng += parseFloat(item.long);
-        centerLat += parseFloat(item.lat);
-        numItems += 1;
-      })
-      console.log(centerLat);
-      console.log(centerLat / numItems)
-      if (numItems > 0) {
-        return {
-          lat: (centerLat / numItems),
-          lng: (centerLng / numItems)
-        }
-      } else {
-        return {
-          lat: 37.7749,
-          lng: 122.4194
-        }
-      }
-
     }
 
-    render() {
-      var contestId = this.props.match.params.id;
-      var contest = this.state.contest
-      var theCenter = this.getCenterPosition();
-      return (
-        <div>
-          <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
-          <div className="container">
-            {this.displayModal()}
-            <h1 className="title">{contest.name}</h1>
-            <div className="row" >
+  }
+
+  render() {
+    var contestId = this.props.match.params.id;
+    var contest = this.state.contest
+    var theCenter = this.getCenterPosition();
+    return (
+      <div>
+        <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
+        <div className="container">
+          <h1 className="title">{contest.name}</h1>
+
+          <div className="row" >
             <div className="col-lg-7">
 
-            <button className="btn btn-primary btn-lg btn-sm" style={{marginBottom:8}}data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
-            <br />
-            {this.drawContests(this.state.contest.items)}
+              {this.displayModal()}
+              <button className="btn btn-primary btn-lg btn-sm" style={{marginBottom:8}}data-toggle="modal" data-target="#myModal"><i className="nc-icon nc-simple-add"></i> New Item</button>
 
+              <br />
+              {this.drawContests(this.state.contest.items)}
+
+            </div>
+            <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
+              <MapContainer center={theCenter} items={this.state.contest.items}/>
+            </div>
           </div>
-          <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-            <MapContainer center={theCenter} items={this.state.contest.items}/>
-          </div>
         </div>
-        </div>
-        </div>
+      </div>
 
 
-      )
-    }
+    )
   }
+}
