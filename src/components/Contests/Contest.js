@@ -12,16 +12,15 @@ const serverPath = (process.env.NODE_ENV === 'development') ? paths.dev : paths.
 export default class Contest extends Component{
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       contest: {
         name: "",
         id: this.props.match.params.id,
         items: []
-      },
-      centerLat:0,
-      centerLng:0,
+      }
     }
+    this.getCenterPosition = this.getCenterPosition.bind(this);
   }
 
   componentWillMount() {
@@ -106,29 +105,34 @@ export default class Contest extends Component{
 
     getCenterPosition() {
       // re-initialize
-      this.setState({
-        centerLng:0,
-        centerLat:0
-      })
+      var centerLng = 0;
+      var centerLat = 0;
+      var numItems = 0;
       this.state.contest.items.map((item) => {
-        this.setState({
-          centerLng:(this.state.centerLng + item.long),
-          centerLat:(this.state.centerLat + item.lat)
-        })
+        centerLng += parseFloat(item.long);
+        centerLat += parseFloat(item.lat);
+        numItems += 1;
       })
-      this.setState({
-        centerLng:(this.state.centerLng / this.state.contest.items.length),
-        centerLat:(this.state.centerLat / this.state.contest.items.length)
-      })
-      return {
-        lat: this.state.centerLat / this.state.contest.items.length,
-        lng: this.state.centerLng / this.state.contest.items.length
+      console.log(centerLat);
+      console.log(centerLat / numItems)
+      if (numItems > 0) {
+        return {
+          lat: (centerLat / numItems),
+          lng: (centerLng / numItems)
+        }
+      } else {
+        return {
+          lat: 37.7749,
+          lng: 122.4194
+        }
       }
+
     }
 
     render() {
       var contestId = this.props.match.params.id;
       var contest = this.state.contest
+      var theCenter = this.getCenterPosition();
       return (
         <div>
           <LoginBar loggedIn={this.props.loggedIn} {...this.props} />
@@ -144,7 +148,7 @@ export default class Contest extends Component{
 
           </div>
           <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-            <MapContainer lng={this.getCenterPosition().lng} lat={this.getCenterPosition().lat} items={this.state.contest.items}/>
+            <MapContainer center={theCenter} items={this.state.contest.items}/>
           </div>
         </div>
         </div>

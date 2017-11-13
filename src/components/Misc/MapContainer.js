@@ -30,6 +30,7 @@ export class MapContainer extends Component {
       <Map
         google={this.props.google}
         zoom={14}
+        initialCenter={this.props.center}
         >
         {this.displayMarkers()}
         <InfoWindow onClose={this.onInfoWindowClose}>
