@@ -140,7 +140,7 @@ export default class Contest extends Component{
     if (this.state.returnedItems) {
       return (
         <div className="col-lg-5 mr-auto" style={{height:'600px'}}>
-          <MapContainer theCenter={this.getCenterPosition()} items={this.state.contest.items} {...this.props}/>
+            <MapContainer theCenter={this.getCenterPosition()} items={this.state.contest.items} {...this.props}/>
         </div>
       )
     } else {
@@ -172,7 +172,7 @@ export default class Contest extends Component{
               {this.drawContests(this.state.contest.items)}
 
             </div>
-              {this.drawMapContainer()}
+            {this.drawMapContainer()}
           </div>
         </div>
       </div>
