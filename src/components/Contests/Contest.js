@@ -19,7 +19,8 @@ export default class Contest extends Component{
         id: this.props.match.params.id,
         items: []
       },
-      highestVote: 10
+      highestVote: 10,
+      returnedItems: false
     }
     this.getCenterPosition = this.getCenterPosition.bind(this);
   }
@@ -37,7 +38,7 @@ export default class Contest extends Component{
         data.items = response.data.items.sort((a, b) => {
           return b.voteCount - a.voteCount
         })
-        this.setState({contest: data})
+        this.setState({contest: data, returnedItems: true, highestVote: data.items[0].voteCount})
       }
     })
     .catch(error => {
@@ -114,6 +115,8 @@ export default class Contest extends Component{
     })
     console.log(centerLat);
     console.log(centerLat / numItems)
+    console.log("centerLat: ", centerLat);
+    console.log("items: ", this.state.contest.items);
     if (numItems > 0) {
       return {
         lat: (centerLat / numItems),
@@ -131,6 +134,22 @@ export default class Contest extends Component{
     return (
       <ItemNew contestId={this.props.match.params.id} dismissAction={() => {this.fetchData()}}/>
     )
+  }
+
+  drawMapContainer() {
+    if (this.state.returnedItems) {
+      return (
+        <div className="col-lg-5 mr-auto" style={{height:'600px'}}>
+          <MapContainer theCenter={this.getCenterPosition()} items={this.state.contest.items} {...this.props}/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="col-lg-5 mr-auto">
+          <a href="#" className="btn btn-round"><div className='uil-reload-css reload-small'><div></div></div> Loading Map...</a>
+        </div>
+      )
+    }
   }
 
 
@@ -153,9 +172,7 @@ export default class Contest extends Component{
               {this.drawContests(this.state.contest.items)}
 
             </div>
-            <div className="col-lg-5 mr-auto" style={{height:'600px'}} >
-              <MapContainer theCenter={this.getCenterPosition()} items={this.state.contest.items} {...this.props}/>
-            </div>
+              {this.drawMapContainer()}
           </div>
         </div>
       </div>

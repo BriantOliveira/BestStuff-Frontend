@@ -27,7 +27,8 @@ export default class ItemNew extends Component{
       place_id: this.state.placeId,
       lat: this.state.lat,
       long: this.state.long,
-      contestId: this.props.contestId
+      contestId: this.props.contestId,
+      voteCount: 0
     }
 
     const url = `${serverPath}/items/create`
