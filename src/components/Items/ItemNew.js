@@ -91,25 +91,21 @@ export default class ItemNew extends Component{
                   <Geosuggest onKeyPress={this.changePlace.bind(this)} value={this.state.placeName} onSuggestSelect={this.onSuggestSelect.bind(this)}  />
                   {/*name="place_name"  type="text"  placeholder="Place Name" */}
                 </div>
-
-
-
               </div>
-            </div>
-            <div className="modal-footer">
-              <div className="left-side">
-                <button type="button" onClick={this.clearAll.bind(this)} className="btn btn-default btn-link">Clear Data</button>
-              </div>
-              <div className="divider"></div>
-              <div className="right-side">
-                <button type="button" onClick={this.sendData.bind(this)} className="btn btn-success btn-link" data-dismiss="modal">Submit</button>
+              <div className="modal-footer">
+                <div className="left-side">
+                  <button type="button" onClick={this.clearAll.bind(this)} className="btn btn-default btn-link">Clear Data</button>
+                </div>
+                <div className="divider"></div>
+                <div className="right-side">
+                  <button type="button" onClick={this.sendData.bind(this)} className="btn btn-success btn-link" data-dismiss="modal">Submit</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
 
-    );
-  }
-};
+      );
+    }
+  };
