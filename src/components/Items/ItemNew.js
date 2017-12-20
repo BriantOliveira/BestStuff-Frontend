@@ -104,6 +104,7 @@ export default class ItemNew extends Component{
             </div>
           </div>
         </div>
+      </div>
 
 
       );
